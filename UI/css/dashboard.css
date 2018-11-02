@@ -1,0 +1,124 @@
+.header {
+  background-color: #51BB7B;
+  height: 7rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__options > a {
+  text-decoration: none;
+  color: #fff;
+  margin-left: 3rem;
+  font-size: 1.7rem;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+}
+
+.header__logout {
+  background-color: #fff;
+  color: #51BB7B;
+  font-weight: bold;
+  margin: 0 7rem 0 14rem;
+  text-decoration: none;
+  font-size: 1.8rem;
+  /* border: 2px solid #51BB7B; */
+  border-radius: 100px;
+  padding: .4rem 3rem;
+}
+.main-content {
+  background-color: #f0f0f0;
+  
+  min-height: 70rem;
+}
+.main-content__heading-primary {
+  font-size: 3rem;
+  text-align: center;
+  padding-top: 6rem;
+  color: #205334;
+}
+.main-content__heading-primary::after {
+  content: '';
+  height: 2px;
+  width: 7%;
+  background: #51BB7B;
+  display: block;
+  margin: 10px auto 0;
+}
+.order-cards {
+  display: flex;
+  /* justify-content: space-evenly; */
+  margin: 5rem 2rem;
+  font-size: 1.6rem;
+  color: #222;
+}
+.order-cards__card {
+  flex: 0 1 26rem;
+  background-color: red;
+  margin-left: 1rem;
+  background-color: #fff;
+  border-top: 3px solid #205334;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.5);
+}
+.order-cards__date {
+  margin: 2rem 1rem 2rem 0rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: right;
+}
+.order-cards__field-group {
+  margin-left: 2rem;
+}
+.order-cards__desc-heading {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+.order-cards__status-heading {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-top: 2rem;
+}
+.order-cards__status1 {
+  color: #51BB7B;
+}
+.order-cards__status2 {
+  color: rgb(179, 179, 37);
+}
+/* .order-cards__status3 {
+  color: rgb(179, 179, 37);
+} */
+.order-cards__btn  button {
+  margin-top: 3rem;
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: #51BB7B;
+  background-color: #eee;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1.6rem;
+}
+.create-order {
+  background-color: #51BB7B;
+  padding: 1rem 2rem;
+  border-radius: 100px;
+  display: inline-block;
+  margin-top: 1rem;
+  letter-spacing: .2rem;
+  font-weight: bold;
+  font-size: 1.4rem;
+
+  position: fixed;
+  right: 16rem;
+  bottom: 5rem;
+}
+.create-order:active,
+.create-order:hover,
+.create-order:link,
+.create-order:visited {
+  text-decoration: none;
+  color: #fff;
+}
