@@ -14,10 +14,27 @@ body {
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
   line-height: 1.6;
-  color: #777;
-  /* background-image: linear-gradient(to right bottom, rgba(122, 161, 244, 0.8), rgba(12, 56, 150, 0.8)), url("../img/jot1.jpeg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top;
-  background-attachment: fixed; */
+  color: #fff;
+}
+.logo-box {
+  font-weight: bold;
+  color: #222;
+  margin-left: 2rem;
+}
+
+.logo-box__link:active,
+.logo-box__link:hover,
+.logo-box__link:link,
+.logo-box__link:visited {
+  text-decoration: none;
+  color: #222;
+}
+
+.logo-box__logo {
+  font-size: 7.5rem;
+}
+
+.logo-box__text {
+  font-family: 'Niconne', cursive;
+  font-size: 3.5rem;
 }

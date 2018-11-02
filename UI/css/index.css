@@ -5,28 +5,6 @@
   justify-content: space-between;
 }
 
-.logo-box {
-  font-weight: bold;
-  color: #222;
-  margin-left: 2rem;
-}
-
-.logo-box__link:active,
-.logo-box__link:hover,
-.logo-box__link:link,
-.logo-box__link:visited {
-  text-decoration: none;
-  color: #222;
-}
-
-.logo-box__logo {
-  font-size: 7.5rem;
-}
-
-.logo-box__text {
-  font-family: 'Niconne', cursive;
-  font-size: 3.5rem;
-}
 
 .header__options > a {
   text-decoration: none;
