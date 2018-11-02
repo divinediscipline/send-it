@@ -5,11 +5,10 @@
   justify-content: space-between;
 }
 
-
 .header__options > a {
   text-decoration: none;
   color: #fff;
-  margin-left: 2.2rem;
+  margin-left: 3rem;
   font-size: 1.7rem;
 }
 
@@ -38,7 +37,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
-  /* background-attachment: fixed; */
   height: 54rem;
   position: relative;
 }
@@ -70,11 +68,6 @@
   text-decoration: none;
   color: #fff;
 }
-/* 
-.features {
-
-  min-height: 60rem;
-} */
 
 .features__heading-primary {
   font-size: 3rem;

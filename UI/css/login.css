@@ -4,11 +4,13 @@ body {
   background-repeat: no-repeat;
   min-height: 100vh;
 }
+
 .main-section {
   max-width: 60rem;
   margin: 5rem auto;
   background-color: #fff;
 }
+
 label {
   font-size: 1.4rem;
   color: #555;
@@ -16,47 +18,69 @@ label {
   display: inline-block;
   margin-top: 1.2rem;
 }
+
 .login-form {
   margin: 2rem 5rem;
   padding-top: 4rem;
 }
+
 .login-form__heading {
   font-size: 2.5rem;
   color: #205334;
   text-align: center;
   margin-bottom: 4rem;
 }
+
 .login-form__input {
   width: 100%;
   padding: 12px 20px;
-  margin: 4px 0;
+  margin: 12px 0;
   box-sizing: border-box;
   font-size: 1.6rem;
   border: 1px solid #eee;
 }
-.login-form__input:focus  {
+
+.login-form__input:focus {
   outline: none;
   border: 1px solid #51BB7B;
 }
 
 .login-form__button {
-margin: 1rem 0;
-padding: 1.5rem 7rem;
-border-radius: 100px;
-background-color: #51BB7B;
-border: none;
-cursor: pointer;
-border-radius: 1rem;
-font-size: 1.6rem;
-text-transform: uppercase;
-color: #fff;
+  display: inline-block;
+  margin: 2rem  0 .8rem 0;
+  padding: 1rem 7rem;
+  border-radius: 100px;
+  background-color: #51BB7B;
+  border: none;
+  cursor: pointer;
+  border-radius: 1rem;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  color: #fff;
 }
+
+.login-form__button:active,
+.login-form__button:hover,
+.login-form__button:link,
+.login-form__button:visited {
+  text-decoration: none;
+}
+
 .login-form__button:hover {
-background-color: #8ed3a9;
+  background-color: #8ed3a9;
 }
-.login-form__login-link {
+
+.login-form__signup-link-text {
   color: #555;
   font-size: 1.6rem;
-  padding: 1rem 0 2rem 0;
+  padding: 1rem 0 2rem;
 
+}
+
+.login-form__signup-link:active,
+.login-form__signup-link:hover,
+.login-form__signup-link:link,
+.login-form__signup-link:visited {
+  text-decoration-line: underline;
+  text-decoration-color: #51BB7B;
 }
