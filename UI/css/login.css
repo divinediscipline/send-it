@@ -76,11 +76,13 @@ label {
   padding: 1rem 0 2rem;
 
 }
+.login-form__signup-link {
+  color: #51BB7B;
+}
 
 .login-form__signup-link:active,
 .login-form__signup-link:hover,
 .login-form__signup-link:link,
 .login-form__signup-link:visited {
-  text-decoration-line: underline;
-  text-decoration-color: #51BB7B;
+  text-decoration: none;
 }
