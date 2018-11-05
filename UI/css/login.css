@@ -7,7 +7,7 @@ body {
 
 .main-section {
   max-width: 60rem;
-  margin: 5rem auto;
+  margin: 2rem auto 5rem auto;
   background-color: #fff;
 }
 
@@ -85,4 +85,26 @@ label {
 .login-form__signup-link:link,
 .login-form__signup-link:visited {
   text-decoration: none;
+}
+
+/* 640px  640/16 = 40 */
+@media only screen and (max-width: 40em) {
+  .main-section {
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+}
+
+/* 370px  370/16 = 23.2 */
+@media only screen and (max-width: 23.2em) {
+  .login-form__button {
+    padding: 1rem 3rem;
+  }
+}
+
+/* 300px  300/16 = 18.75 */
+@media only screen and (max-width: 18.75em) {
+  .login-form__button {
+    padding: .5rem 2rem;
+  }
 }
