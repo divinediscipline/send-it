@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
     crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Niconne" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Pattaya" rel="stylesheet">
   <title>Document</title>
 </head>
 
@@ -35,10 +35,10 @@
         <a href="./index.html" class="header__logout">Log out</a>
       </nav>
     </div>
+
     <main class="main-content">
       <h3 class="main-content__heading-primary">All delivery orders</h3>
       <div class="order-cards">
-
         <div class="order-cards__card">
           <p class="order-cards__date">July 9, 2018.</p>
           <div class="order-cards__field-group">
@@ -46,9 +46,14 @@
             <p class="order-cards__desc">2 Hp laptops with...</p>
           </div>
           <div class="order-cards__field-group">
+            <h5 class="order-cards__destination-heading">Destination</h5>
+            <p class="order-cards__destination-text">Lagos state</p>
+          </div>
+          <div class="order-cards__field-group">
             <h5 class="order-cards__status-heading">Status</h5>
             <p class="order-cards__status1">Delivered</p>
           </div>
+          
           <p class="order-cards__btn"><button>View details</button></p>
         </div>
 
@@ -57,6 +62,10 @@
           <div class="order-cards__field-group">
             <h5 class="order-cards__desc-heading">Parcel description</h5>
             <p class="order-cards__desc">1 television set of... </p>
+          </div>
+          <div class="order-cards__field-group">
+            <h5 class="order-cards__destination-heading">Destination</h5>
+            <p class="order-cards__destination-text">Akwa-ibom state</p>
           </div>
           <div class="order-cards__field-group">
             <h5 class="order-cards__status-heading">Status</h5>
@@ -69,7 +78,11 @@
           <p class="order-cards__date">November 1, 2018.</p>
           <div class="order-cards__field-group">
             <h5 class="order-cards__desc-heading">Parcel description</h5>
-            <p class="order-cards__desc">3 phones, 5 dictionaries with... </p>
+            <p class="order-cards__desc">3 phones, 5 bags of... </p>
+          </div>
+          <div class="order-cards__field-group">
+            <h5 class="order-cards__destination-heading">Destination</h5>
+            <p class="order-cards__destination-text">Ogun state</p>
           </div>
           <div class="order-cards__field-group">
             <h5 class="order-cards__status-heading">Status</h5>
@@ -78,8 +91,22 @@
           <p class="order-cards__btn"><button>View details</button></p>
         </div>
       </div>
-      <a href="#" class="create-order">Create new delivery order</a>
+      <a href="#" class="btn-add" title="Create new delivery order">
+        <i class="fas fa-plus btn-add__icon"></i>
+      </a>
+
+      <a href="#" class="create-order-btn">Create new delivery order</a>
     </main>
+
+    <footer class="footer">
+      <span class="footer__legal">Copyright &copy; 2018</span>
+      <span class="footer__faq">FAQs</span>
+      <span class="footer__terms-of-use">Terms of use</span>
+      <span class="footer__pricing">Pricing</span>
+      <span class="footer__how-it-works">How it works</span>
+      <span class="footer__contact-us">Contact us</span>
+      
+    </footer>
   </div>
 </body>
 
