@@ -18,8 +18,11 @@ body {
 }
 .logo-box {
   font-weight: bold;
-  color: #222;
-  margin-left: 2rem;
+  margin-left: 3rem;
+}
+.logo-box__center {
+  margin: 8rem 0 0rem 0;
+  text-align: center;
 }
 
 .logo-box__link:active,
@@ -31,10 +34,28 @@ body {
 }
 
 .logo-box__logo {
-  font-size: 7.5rem;
+  font-size: 3.5rem;
+  color: #205334;
 }
 
 .logo-box__text {
-  font-family: 'Niconne', cursive;
-  font-size: 3.5rem;
+  font-family: 'Pattaya', sans-serif;
+  font-size: 4rem;
+  color: #205334;
+  text-transform: uppercase;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20rem;
+  /* background-color: #51BB7B; */
+  background-color: #bfe6ce;
+  color: #777;
+  font-size: 1.4rem;
+}
+
+.footer > span {
+  margin-right: 3rem;
 }
