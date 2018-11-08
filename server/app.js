@@ -1,7 +1,7 @@
 import express from 'express';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
-import deliveryOrders from './routes/deliveryOrders';
+import parcelDeliveryOrders from './routes/parcelDeliveryOrders';
 
 const app = express();
 
@@ -11,7 +11,7 @@ app.use(logger('dev'));
 // Parse incoming requests data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/api/v1', deliveryOrders);
+app.use('/api/v1', parcelDeliveryOrders);
 
 
 app.get('/', (req, res) => res.status(200).json({
