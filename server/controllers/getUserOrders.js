@@ -1,17 +1,17 @@
 import orderData from '../models/db/orderData';
 
-const getParceDeliveryOrder = (req, res) => {
-  const { parcelId } = req.params;
-  if (!isNaN(parcelId)) {
-    const foundOrder = orderData.find((singleOrder) => {
-      return singleOrder.parcelId == parcelId;
+const getUserOrders = (req, res) => {
+  const { userId } = req.params;
+  if (!isNaN(userId)) {
+    const foundOrders = orderData.filter((singleOrder) => {
+      return singleOrder.userId == userId;
     });
 
-    if (foundOrder) {
+    if (foundOrders.length >= 1) {
       res.status(200).json(
         {
           message: 'successful',
-          foundOrder,
+          foundOrders,
         },
       );
     } else {
@@ -26,4 +26,4 @@ const getParceDeliveryOrder = (req, res) => {
   }
 };
 
-export default getParceDeliveryOrder;
+export default getUserOrders;
