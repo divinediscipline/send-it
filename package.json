@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node server/helpers/www",
     "test": "mocha server/**/*.test.js --require babel-register",
     "start:dev": "node server/helpers/www"
+  },
+  "engines": {
+    "node": "8.9.1"
   },
   "repository": {
     "type": "git",
