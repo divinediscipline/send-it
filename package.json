@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha dist/**/*.test.js",
+    "testing": "mocha server/**/*.test.js --require babel-register",
     "clean": "rm -rf dist",
     "build": "npm run clean && mkdir dist && babel server -s -d dist",
     "start:dev": "node server/helpers/www",
