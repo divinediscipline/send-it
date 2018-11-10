@@ -3,9 +3,7 @@ import orderData from '../models/db/orderData';
 const getParceDeliveryOrder = (req, res) => {
   const { parcelId } = req.params;
   if (!isNaN(parcelId)) {
-    const foundOrder = orderData.find((singleOrder) => {
-      return singleOrder.parcelId == parcelId;
-    });
+    const foundOrder = orderData.find(singleOrder => singleOrder.parcelId == parcelId);
 
     if (foundOrder) {
       res.status(200).json(
@@ -21,7 +19,7 @@ const getParceDeliveryOrder = (req, res) => {
     }
   } else {
     res.status(400).json({
-      message: 'Bad ID request format',
+      message: 'ParcelId must be a number',
     });
   }
 };
