@@ -7,7 +7,6 @@ import orderData from '../models/db/orderData';
 
 
 describe('/GET a specific parcel delivery order', () => {
-
   it('should return 400 if parcelId is not a number', (done) => {
     request(app)
       .get('/api/v1/parcels/abcd')

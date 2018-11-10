@@ -9,7 +9,7 @@ describe('/GET all parcel delivery orders', () => {
       .get('/api/v1/parcels')
       .expect(200)
       .expect((res) => {
-        expect(res.body.allParcelDeliveryOrders.length).to.equal(4);
+        expect(res.body.allParcelDeliveryOrders.length).to.equal(5);
       })
       .end(done);
   });
