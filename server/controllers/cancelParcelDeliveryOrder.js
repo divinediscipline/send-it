@@ -9,7 +9,7 @@ const cancelParcelDeliveryOrder = (req, res) => {
       foundOrder.status = 'cancelled';
       res.status(200).json({
         message: 'Cancelled successfully',
-        'cancelled order': foundOrder,
+        cancelledOrder: foundOrder,
       });
     } else {
       res.status(404).json({
