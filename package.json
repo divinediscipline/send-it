@@ -4,11 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "npm run build && node dist/server.js",
     "clean": "rm -rf dist",
     "test": "cross-env NODE_ENV=test nyc mocha server/**/*.test.js --require babel-register --exit",
     "build": "npm run clean && mkdir dist && babel server -s -d dist",
-    "start:prod": "npm run build",
     "start:dev": "node server/helpers/www",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
@@ -34,6 +33,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.5",
     "@babel/preset-env": "^7.1.5",
     "@babel/register": "^7.0.0",
     "babel-cli": "^6.26.0",
