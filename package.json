@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build && node dist/server.js",
-    "clean": "rm -rf dist",
     "test": "cross-env NODE_ENV=test nyc mocha server/**/*.test.js --require babel-register --exit",
-    "build": "npm run clean && mkdir dist && babel server -s -d dist",
+    "build": "babel server -d dist",
     "start:dev": "node server/helpers/www",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
