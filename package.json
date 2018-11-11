@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && node dist/server.js",
+    "start": "node dist/server.js",
     "test": "cross-env NODE_ENV=test nyc mocha server/**/*.test.js --require babel-register --exit",
     "build": "babel server -d dist",
     "start:dev": "node server/helpers/www",
