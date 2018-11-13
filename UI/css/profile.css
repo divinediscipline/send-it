@@ -1,0 +1,128 @@
+.header {
+  background-color: #51BB7B;
+  height: 7rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__options > a {
+  text-decoration: none;
+  color: #fff;
+  margin-left: 3rem;
+  font-size: 1.7rem;
+}
+
+.header__options > a:hover {
+  color: #222;
+  font-weight: bold;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+}
+
+.header__logout {
+  background-color: #fff;
+  color: #51BB7B;
+  font-weight: bold;
+  margin: 0 3rem 0 14rem;
+  text-decoration: none;
+  font-size: 1.8rem;
+  border-radius: 100px;
+  padding: .4rem 3rem;
+}
+
+.header__logout:hover {
+  color: #222;
+  font-weight: bold;
+}
+
+.main-content {
+  background-color: #f0f0f0;
+  padding-top: 7rem;
+  color: #777;
+
+  min-height: 100rem;
+}
+
+
+.hero__btn {
+  background-color: #51BB7B;
+  padding: 1rem 6rem;
+  border-radius: 100px;
+  display: inline-block;
+  margin-top: 1rem;
+  letter-spacing: .2rem;
+
+  animation: moveInRight 1.5s ease-out;
+}
+
+.hero__btn:hover {
+  background-color: #8ed3a9;
+  color: #222;
+  font-weight: bold;
+}
+
+.hero__btn:active,
+.hero__btn:hover,
+.hero__btn:link,
+.hero__btn:visited {
+  text-decoration: none;
+  color: #fff;
+}
+.personal-details {
+  background-color: #addfc1;
+  max-width: 55rem;
+  margin: 0 auto;
+  /* margin-top: 5rem; */
+  /* padding-top: 7rem; */
+}
+.personal-details__heading {
+  font-size: 1.8rem;
+  font-weight: bold;
+  display: block;
+  padding: 2rem 0 4rem 4rem;
+  color: #222;
+}
+.personal-details__content {
+  font-size: 1.4rem;
+  padding: 0 2rem 0 2rem;
+}
+.personl-details__field-group {
+  display: flex;
+  justify-content: space-between;
+  padding: .7rem 0 .6rem 0;
+}
+.personal-details__label {
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+.statistics {
+  background-color: #addfc1;
+  max-width: 55rem;
+  margin: 0 auto;
+  margin-top: 5rem;
+  min-height: 20rem;
+  margin-bottom: 30rem;
+}
+.statistics__content {
+  font-size: 1.4rem;
+  padding: 0 2rem 0 2rem;
+}
+.statistics__field-group {
+  display: flex;
+  justify-content: space-between;
+  padding: .7rem 0 .6rem 0;
+}
+.statistics__heading {
+  font-size: 1.8rem;
+  font-weight: bold;
+  display: block;
+  padding: 2rem 0 4rem 4rem;
+  color: #222;
+}
+.statistics__label {
+  font-weight: bold;
+  font-size: 1.6rem;
+}
