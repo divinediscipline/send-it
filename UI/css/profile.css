@@ -8,7 +8,7 @@
 .header__options > a {
   text-decoration: none;
   color: #fff;
-  margin-left: 3rem;
+  margin-right: 3rem;
   font-size: 1.7rem;
 }
 
@@ -21,7 +21,7 @@
   display: flex;
   align-items: center;
 }
-
+/* 
 .header__logout {
   background-color: #fff;
   color: #51BB7B;
@@ -36,26 +36,53 @@
 .header__logout:hover {
   color: #222;
   font-weight: bold;
-}
+} */
 
+/* .header__profile {
+  margin-left: 4rem;
+} */
 .main-content {
   background-color: #f0f0f0;
   padding-top: 7rem;
   color: #777;
-
-  min-height: 100rem;
+  /* overflow: hidden; */
+  padding-bottom: 2rem;
 }
 
-
-.hero__btn {
+.create-order-btn {
   background-color: #51BB7B;
-  padding: 1rem 6rem;
+  padding: 1rem 2rem;
   border-radius: 100px;
   display: inline-block;
   margin-top: 1rem;
   letter-spacing: .2rem;
+  font-weight: bold;
+  font-size: 1.4rem;
 
-  animation: moveInRight 1.5s ease-out;
+  position: fixed;
+  right: 8rem;
+  top: 9rem;
+}
+
+.create-order-btn:hover {
+  background-color: #8ed3a9;
+}
+
+.create-order-btn:active,
+.create-order-btn:link,
+.create-order-btn:visited {
+  text-decoration: none;
+  color: #fff;
+}
+
+.hero__btn--profile {
+  background-color: #51BB7B;
+  padding: 1rem 6rem;
+  display: inline-block;
+  margin: 1rem 1rem 3rem 7rem;
+  letter-spacing: .2rem;
+  font-size: 1.3rem;
+  border-radius: 7px;
 }
 
 .hero__btn:hover {
@@ -64,19 +91,35 @@
   font-weight: bold;
 }
 
-.hero__btn:active,
-.hero__btn:hover,
-.hero__btn:link,
-.hero__btn:visited {
+.hero__btn--profile:active,
+.hero__btn--profile:hover,
+.hero__btn--profile:link,
+.hero__btn--profile:visited {
   text-decoration: none;
   color: #fff;
+}
+.profile-image-box{
+  /* background-color: red; */
+  margin-left: 8rem;
+  margin-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  float: left;
+}
+.profile-image-pic {
+  border-radius: 50%;
+}
+.profile-image-select{
+  margin-top: 3rem;
 }
 .personal-details {
   background-color: #addfc1;
   max-width: 55rem;
   margin: 0 auto;
-  /* margin-top: 5rem; */
-  /* padding-top: 7rem; */
+  border-radius: 10px;
+}
+.personal-details__icon {
+  font-size: 3rem;
 }
 .personal-details__heading {
   font-size: 1.8rem;
@@ -105,6 +148,8 @@
   margin-top: 5rem;
   min-height: 20rem;
   margin-bottom: 30rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
 }
 .statistics__content {
   font-size: 1.4rem;
@@ -125,4 +170,8 @@
 .statistics__label {
   font-weight: bold;
   font-size: 1.6rem;
+}
+
+.footer-profile {
+  /* margin-top: -25rem; */
 }

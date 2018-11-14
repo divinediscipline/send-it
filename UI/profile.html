@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
   <link href="https://fonts.googleapis.com/css?family=Pattaya" rel="stylesheet">
   <title>Profile</title>
 </head>
+
 <body>
   <div class="profile-page">
     <header class="header">
@@ -26,55 +28,77 @@
         <div class="header__options">
           <a href="" class="header__pricing">Pricing</a>
           <a href="" class="header__how-it-works">How it works</a>
-          <a href="" class="header__how-it-works">Dashboard</a>
-          <a href="" class="header__profile">Profile</a>
+          <a href="./dashboard.html" class="header__how-it-works">Dashboard</a>
+          <a href="./profile.html" class="header__profile">Profile</a>
         </div>
-        <a href="./index.html" class="header__logout">Log out</a>
+    
+        
       </nav>
     </header>
 
     <main class="main-content">
-        <a href="./signup.html" class="hero__btn">Edit profile</a>
+      <a href="" class="hero__btn--profile">Edit profile</a>
+      <div class="profile-image-box">
+          
+          <!-- <div class="profile-image-pic"> -->
+              <img src="./img/myself.jpg" class="profile-image-pic" alt="Smiley face" height="180" width="180">
+          <!-- </div> -->
+          <input type="file" class="profile-image-select">
+      </div>
+      
       <div class="personal-details">
-        <h3 class="personal-details__heading">Personal details</h3>
+        <h3 class="personal-details__heading"><i class="fas fa-user-circle personal-details__icon"></i> &nbsp; Personal
+          details</h3>
         <div class="personal-details__content">
-            <p class="personl-details__field-group">
-                <span class="personal-details__label">First Name</span>
-                <span class="personal-details__field">Divinelove</span>
-            </p>
-            <p class="personl-details__field-group">
-                <span class="personal-details__label">Last Name</span>
-                <span class="personal-details__field">Chukwuemeka</span>
-            </p>
-            <p class="personl-details__field-group">
-                <span class="personal-details__label">Email</span>
-                <span class="personal-details__field">divinediscipline4real@gmail.com</span>
-            </p>
-            <p class="personl-details__field-group">
-              <span class="personal-details__label">Phone</span>
-              <span class="personal-details__field">07037648759</span>
+          <p class="personl-details__field-group">
+            <span class="personal-details__label">First Name</span>
+            <span class="personal-details__field">Divinelove</span>
+          </p>
+          <p class="personl-details__field-group">
+            <span class="personal-details__label">Last Name</span>
+            <span class="personal-details__field">Chukwuemeka</span>
+          </p>
+          <p class="personl-details__field-group">
+            <span class="personal-details__label">Email</span>
+            <span class="personal-details__field">divinediscipline4real@gmail.com</span>
+          </p>
+          <p class="personl-details__field-group">
+            <span class="personal-details__label">Phone</span>
+            <span class="personal-details__field">07037648759</span>
           </p>
         </div>
 
-    </div>
-    <div class="statistics">
-      <h3 class="statistics__heading">Statistics</h3>
-      <div class="statistics__content">
-        <p class="statistics__field-group">
-          <span class="statistics__label">Number of delivery orders in transit</span>
-          <span class="statistics__field">3</span>
-        </p>
-        <p class="statistics__field-group">
-          <span class="statistics__label">Number of delivery orders delivered</span>
-          <span class="statistics__field">2</span>
-        </p>
-        <p class="statistics__field-group">
-          <span class="statistics__label">All parcel delivery orders</span>
-          <span class="statistics__field">3</span>
-        </p>
       </div>
-    </div>
+      <div class="statistics">
+        <h3 class="statistics__heading"><i class="fas fa-chart-line personal-details__icon"></i> &nbsp; Statistics</h3>
+        <div class="statistics__content">
+          <p class="statistics__field-group">
+            <span class="statistics__label">Number of delivery orders in transit</span>
+            <span class="statistics__field">3</span>
+          </p>
+          <p class="statistics__field-group">
+            <span class="statistics__label">Number of delivery orders delivered</span>
+            <span class="statistics__field">2</span>
+          </p>
+          <p class="statistics__field-group">
+            <span class="statistics__label">All parcel delivery orders</span>
+            <span class="statistics__field">3</span>
+          </p>
+        </div>
+      </div>
+
+      <a href="#" class="create-order-btn"> <i class="fas fa-plus btn-add-desktop"></i>&nbsp New order</a>
     </main>
+    <footer class="footer footer-profile">
+      <span class="footer__legal">Copyright &copy; 2018</span>
+      <span class="footer__faq">FAQs</span>
+      <span class="footer__terms-of-use">Terms of use</span>
+      <span class="footer__pricing">Pricing</span>
+      <span class="footer__how-it-works">How it works</span>
+      <span class="footer__contact-us">Contact us</span>
+
+    </footer>
   </div>
 </body>
+
 </html>
