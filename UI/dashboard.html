@@ -30,9 +30,17 @@
           <a href="" class="header__pricing">Pricing</a>
           <a href="" class="header__how-it-works">How it works</a>
           <a href="./dashboard.html" class="header__how-it-works">Dashboard</a>
-          <a href="./profile.html" class="header__profile">Profile</a>
         </div>
-        <a href="./index.html" class="header__logout">Log out</a>
+        <div class="header__profile-box">
+          <span class="header__profile">Divine</span>
+          <i onclick="myFunction()" class="fas fa-caret-down"></i>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="./profile.html">Profile</a>
+            <hr>
+            <a href="./index.html">Log out</a>
+          </div>
+        </div>
+        <!-- <a href="./index.html" class="header__logout">Log out</a> -->
       </nav>
     </div>
 
@@ -42,60 +50,61 @@
         <div class="order-cards__card">
           <p class="order-cards__date">July 9, 2018.</p>
           <div class="order-cards__field-group">
-            <h5 class="order-cards__desc-heading">Parcel description</h5>
-            <p class="order-cards__desc">2 Hp laptops with...</p>
-          </div>
-          <div class="order-cards__field-group">
-            <h5 class="order-cards__destination-heading">Destination</h5>
-            <p class="order-cards__destination-text">Lagos state</p>
+            <h5 class="order-cards__destination-heading">Parcel ID</h5>
+            <p class="order-cards__destination-text">0157576AD</p>
           </div>
           <div class="order-cards__field-group">
             <h5 class="order-cards__status-heading">Status</h5>
             <p class="order-cards__status1">Delivered</p>
           </div>
-          
+          <div class="order-cards__field-group">
+            <h5 class="order-cards__desc-heading">Parcel description</h5>
+            <p class="order-cards__desc">2 Hp laptops with...</p>
+          </div>
           <p class="order-cards__btn"><button>View details</button></p>
         </div>
 
         <div class="order-cards__card">
           <p class="order-cards__date">August 5, 2018.</p>
+
           <div class="order-cards__field-group">
-            <h5 class="order-cards__desc-heading">Parcel description</h5>
-            <p class="order-cards__desc">1 television set of... </p>
-          </div>
-          <div class="order-cards__field-group">
-            <h5 class="order-cards__destination-heading">Destination</h5>
-            <p class="order-cards__destination-text">Akwa-ibom state</p>
+            <h5 class="order-cards__destination-heading">Parcel ID</h5>
+            <p class="order-cards__destination-text">01747447GP</p>
           </div>
           <div class="order-cards__field-group">
             <h5 class="order-cards__status-heading">Status</h5>
             <p class="order-cards__status2">In transit</p>
+          </div>
+          <div class="order-cards__field-group">
+            <h5 class="order-cards__desc-heading">Parcel description</h5>
+            <p class="order-cards__desc">1 television set of... </p>
           </div>
           <p class="order-cards__btn"><button>View details</button></p>
         </div>
 
         <div class="order-cards__card">
           <p class="order-cards__date">November 1, 2018.</p>
+
+          <div class="order-cards__field-group">
+            <h5 class="order-cards__destination-heading">Parcel ID</h5>
+            <p class="order-cards__destination-text">01644994RT</p>
+          </div>
+          <div class="order-cards__field-group">
+            <h5 class="order-cards__status-heading">Status</h5>
+            <p class="order-cards__status">Pending</p>
+          </div>
           <div class="order-cards__field-group">
             <h5 class="order-cards__desc-heading">Parcel description</h5>
             <p class="order-cards__desc">3 phones, 5 bags of... </p>
           </div>
-          <div class="order-cards__field-group">
-            <h5 class="order-cards__destination-heading">Destination</h5>
-            <p class="order-cards__destination-text">Ogun state</p>
-          </div>
-          <div class="order-cards__field-group">
-            <h5 class="order-cards__status-heading">Status</h5>
-            <p class="order-cards__status">Order created</p>
-          </div>
           <p class="order-cards__btn"><button>View details</button></p>
         </div>
       </div>
-      <a href="#" class="btn-add" title="Create new delivery order">
-        <i class="fas fa-plus btn-add__icon"></i>
+      <a href="#" class="btn-add-mobile" title="Create new delivery order">
+        <i class="fas fa-plus btn-add-mobile__icon"></i>
       </a>
 
-      <a href="#" class="create-order-btn">Create new delivery order</a>
+      <a href="#" class="create-order-btn"> <i class="fas fa-plus btn-add-desktop"></i>&nbsp New order</a>
     </main>
 
     <footer class="footer">
@@ -105,9 +114,10 @@
       <span class="footer__pricing">Pricing</span>
       <span class="footer__how-it-works">How it works</span>
       <span class="footer__contact-us">Contact us</span>
-      
+
     </footer>
   </div>
+  <script src="./js/dashboard.js"></script>
 </body>
 
 </html>
