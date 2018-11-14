@@ -1,0 +1,42 @@
+.header {
+  background-color: #51BB7B;
+  height: 7rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__options > a {
+  text-decoration: none;
+  color: #222;
+  margin-left: 3rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+}
+
+.header__logout {
+  background-color: #fff;
+  color: #51BB7B;
+  font-weight: bold;
+  margin: 0 3rem 0 14rem;
+  text-decoration: none;
+  font-size: 1.8rem;
+  border-radius: 100px;
+  padding: .4rem 3rem;
+}
+.page-layout {
+  display: flex;
+  background-color: #eee;
+}
+.admin-display {
+  flex: 0 0 22%;
+  background-color: orangered;
+  min-height: 100vh;
+}
+.admin-table {
+  flex: 1;
+}
