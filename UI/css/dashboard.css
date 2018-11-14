@@ -22,21 +22,6 @@
   align-items: center;
 }
 
-/* .header__logout {
-  background-color: #fff;
-  color: #51BB7B;
-  font-weight: bold;
-  margin: 0 3rem 0 14rem;
-  text-decoration: none;
-  font-size: 1.8rem;
-  border-radius: 100px;
-  padding: .4rem 3rem;
-}
-
-.header__logout:hover {
-  color: #222;
-  font-weight: bold;
-} */
 .header__profile-box {
   font-size: 2rem;
   font-weight: bold;
@@ -55,7 +40,7 @@
   border: none;
   cursor: pointer;
 }
-/* Dropdown button on hover & focus */
+
 .dropbtn:focus,
 .dropbtn:hover {
   background-color: #2980B9;
