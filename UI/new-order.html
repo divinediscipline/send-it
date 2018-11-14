@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" type="text/css" href="./css/baseStyles.css">
+  <link rel="stylesheet" type="text/css" href="./css/new-order.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+    crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Pattaya" rel="stylesheet">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div class="dashbord-page">
+    <div class="header">
+      <div class="logo-box">
+        <a href="./index.html" class="logo-box__link">
+          <i class="fas fa-shipping-fast logo-box__logo"></i>
+          <span class="logo-box__text">Send-It</span>
+        </a>
+      </div>
+
+      <nav class="header__nav">
+        <div class="header__options">
+          <a href="" class="header__pricing">Pricing</a>
+          <a href="" class="header__how-it-works">How it works</a>
+          <a href="./dashboard.html" class="header__how-it-works">Dashboard</a>
+        </div>
+        <div class="header__profile-box">
+          <span class="header__profile">Divine</span>
+          <i onclick="myFunction()" class="fas fa-caret-down"></i>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="./profile.html">Profile</a>
+            <hr>
+            <a href="./index.html">Log out</a>
+          </div>
+        </div>
+        <!-- <a href="./index.html" class="header__logout">Log out</a> -->
+      </nav>
+    </div>
+
+    <main class="main-section">
+      <form class="new-order-form">
+        <h2 class="new-order-form__heading">New order</h2>
+        <div class="new-order-form__form-group">
+          <label for="pkage-desc">Package description</label>
+          <textarea name="" id="" class="new-order-form__input" cols="30" rows="10" placeholder="describe your parcel"></textarea>
+          <fieldset class="new-order-form__input fieldset">
+            <legend class="legend">
+              Pick up location
+            </legend>
+            <input class="new-order-form__input" type="text" name="" placeholder="State">
+            <input class="new-order-form__input" type="text" name="" placeholder="Local government">
+            <input class="new-order-form__input" type="text" name="" placeholder="Address">
+            <input class="new-order-form__input" type="text" name="" placeholder="Nearest bustop/landmark">
+          </fieldset>
+          <fieldset class="new-order-form__input fieldset">
+            <legend class="legend">
+              Delivery address
+            </legend>
+            <input class="new-order-form__input" type="state" name="" placeholder="State">
+            <input class="new-order-form__input" type="state" name="" placeholder="Local government">
+            <input class="new-order-form__input" type="state" name="" placeholder="Address">
+            <input class="new-order-form__input" type="state" name="" placeholder="Nearest bustop/landmark">
+            <input class="new-order-form__input" type="number" name="" placeholder="Receivers phone number">
+            <input class="new-order-form__input" type="number" name="" placeholder="Receivers email">
+          </fieldset>
+          <label>
+            <h4>Pick-up Time</h4>
+          </label>
+          <input class="new-order-form__input" id='delivery-time' type="datetime-local" name='deliveryTime' placeholder="Delivery Time">
+          <label>
+            <h4>Parcel Weight</h4>
+          </label>
+          <select class="new-order-form__input" id='parcelDescription' name='parcelDescription'>
+            <option selected="true" disabled>Parcel Weight</option>
+            <option value="0kg - 5kg">0kg - 5kg (N200/km)</option>
+            <option value="5kg - 20kg">5kg - 20kg (N400/km)</option>
+            <option value="20kg - 50kg">20kg - 50kg (N600/km)</option>
+            <option value="50kg - 100kg">50kg - 100kg (N800/km)</option>
+            <option value="100kg above">100kg above (N1000/km)</option>
+          </select>
+        </div>
+        <a href="#" class="new-order-form__button">Create order</a>
+      </form>
+    </main>
+    <footer class="footer">
+      <span class="footer__legal">Copyright &copy; 2018</span>
+      <span class="footer__faq">FAQs</span>
+      <span class="footer__terms-of-use">Terms of use</span>
+      <span class="footer__pricing">Pricing</span>
+      <span class="footer__how-it-works">How it works</span>
+      <span class="footer__contact-us">Contact us</span>
+
+    </footer>
+
+</body>
+
+</html>
