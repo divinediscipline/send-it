@@ -1,8 +1,6 @@
 import Validator from 'validatorjs';
 
-import orderData from '../models/db/orderData';
-
-const createParcelDeliveryOrder = (req, res) => {
+const validateParcelOrder = (req, res, next) => {
   const data = {
     parcelId: req.body.parcelId,
     userId: req.body.userId,
@@ -50,12 +48,8 @@ const createParcelDeliveryOrder = (req, res) => {
       message: validation.errors.all(),
     });
   } else {
-    orderData.push(data);
-    res.status(201).json({
-      message: 'order created successfully',
-      newOrder: data,
-    });
+    next();
   }
 };
 
-export default createParcelDeliveryOrder;
+export default validateParcelOrder;
