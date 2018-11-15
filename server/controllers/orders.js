@@ -11,106 +11,87 @@ class Orders {
   }
 
   static getParcelDeliveryOrder(req, res) {
-    const { parcelId } = req.params;
-    const newParcelId = +parcelId;
-    if (typeof (newParcelId) === 'number') {
-      const foundOrder = allParcelDeliveryOrders.find(singleOrder => singleOrder.parcelId === newParcelId);
-
-      if (foundOrder) {
-        res.status(200).json(
-          {
-            message: 'successful',
-            foundOrder,
-          },
-        );
-      } else {
-        res.status(404).json({
-          message: 'Order not found',
-        });
-      }
+    const receivedParcelId = req.params.parcelId;
+    const foundOrder = allParcelDeliveryOrders.find(singleOrder => singleOrder.parcelId === +receivedParcelId);
+    if (foundOrder) {
+      res.status(200).json(
+        {
+          message: 'successful',
+          foundOrder,
+        },
+      );
     } else {
-      res.status(400).json({
-        message: 'ParcelId must be a number',
+      res.status(404).json({
+        message: 'Order not found',
       });
     }
   }
 
   static getUserOrders(req, res) {
     const { userId } = req.params;
-    const newUserId = +userId;
-    if (typeof (newUserId) === 'number') {
-      const foundOrders = allParcelDeliveryOrders.filter(singleOrder => singleOrder.userId === newUserId);
-
-      if (foundOrders.length >= 1) {
-        res.status(200).json(
-          {
-            message: 'successful',
-            foundOrders,
-          },
-        );
-      } else {
-        res.status(404).json({
-          message: 'User not found',
-        });
-      }
+    const foundOrders = allParcelDeliveryOrders.filter(singleOrder => singleOrder.userId === +userId);
+    if (foundOrders.length >= 1) {
+      res.status(200).json(
+        {
+          message: 'successful',
+          foundOrders,
+        },
+      );
     } else {
-      res.status(400).json({
-        message: 'Bad ID request format',
+      res.status(404).json({
+        message: 'User not found',
       });
     }
   }
 
   static createParcelDeliveryOrder(req, res) {
-    allParcelDeliveryOrders.push(req.body);
+    const parcelId = allParcelDeliveryOrders[allParcelDeliveryOrders.length - 1].parcelId + 1;
+    const userId = allParcelDeliveryOrders[allParcelDeliveryOrders.length - 1].userId + 1;
+    const newOrder = {
+      parcelId,
+      userId,
+      sendersFirstName: req.body.sendersFirstName,
+      sendersLastName: req.body.sendersLastName,
+      sendersPhone: req.body.sendersPhone,
+      parcelDescription: req.body.parcelDescription,
+      weightCategory: req.body.weightCategory,
+      price: req.body.price,
+      pickUpLocation: req.body.pickUpLocation,
+      destination: req.body.destination,
+      packageTransitTime: req.body.packageTransitTime,
+      receiversFirstName: req.body.receiversFirstName,
+      receiversLastName: req.body.receiversLastName,
+      receiversEmail: req.body.receiversEmail,
+      receiversPhone: req.body.receiversPhone,
+      status: 'Pending',
+    };
+    allParcelDeliveryOrders.push({
+      newOrder,
+    });
     res.status(201).json({
       message: 'order created successfully',
-      newOrder: req.body,
+      newOrder,
     });
   }
 
   static cancelParcelDeliveryOrder(req, res) {
     const { parcelId } = req.params;
-    const newParcelId = +parcelId;
-
-    if (typeof (newParcelId) === 'number') {
-      const foundOrder = allParcelDeliveryOrders.filter(singleOrder => singleOrder.parcelId === newParcelId);
-      if (foundOrder.length >= 1) {
-        switch (foundOrder[0].status) {
-          case 'Pending':
-            foundOrder[0].status = 'Cancelled';
-            res.status(200).json({
-              message: 'Cancelled successfully',
-              cancelledOrder: foundOrder,
-            });
-            break;
-          case 'In transit':
-            res.status(400).json({
-              message: 'Cannot cancel a parcel order already in transit',
-            });
-            break;
-          case 'Delivered':
-            res.status(400).json({
-              message: 'Cannot cancel a parcel order already delivered',
-            });
-            break;
-          case 'Cancelled':
-            res.status(400).json({
-              message: 'Parcel order is already cancelled',
-            });
-            break;
-          default:
-            res.status(400).json({
-              message: 'Order not found',
-            });
-        }
+    const foundOrder = allParcelDeliveryOrders.filter(singleOrder => singleOrder.parcelId === +parcelId);
+    if (foundOrder.length >= 1) {
+      if (foundOrder[0].status !== 'Cancelled' && foundOrder[0].status !== 'Delivered') {
+        foundOrder[0].status = 'Cancelled';
+        res.status(200).json({
+          message: 'Cancelled successfully',
+          cancelledOrder: foundOrder,
+        });
       } else {
-        res.status(404).json({
-          message: 'Order not found',
+        res.status(400).json({
+          message: 'Cannot cancel order',
         });
       }
     } else {
-      res.status(400).json({
-        message: 'ParcelId must be a number',
+      res.status(404).json({
+        message: 'Order not found',
       });
     }
   }
