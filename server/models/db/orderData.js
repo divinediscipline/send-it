@@ -55,7 +55,7 @@ const orderData = [{
   receiversLastName: 'Abdul',
   receiversEmail: 'stephen@gmail.com',
   receiversPhone: '08177648669',
-  status: 'in transit',
+  status: 'In transit',
 },
 {
   parcelId: 4,
@@ -74,7 +74,7 @@ const orderData = [{
   receiversLastName: 'Abdul',
   receiversEmail: 'patience@gmail.com',
   receiversPhone: '08177648669',
-  status: 'pending confirmation',
+  status: 'Pending',
 }];
 
 export default orderData;
