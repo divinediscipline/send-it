@@ -12,8 +12,9 @@ class Orders {
 
   static getParcelDeliveryOrder(req, res) {
     const { parcelId } = req.params;
-    if (!isNaN(parcelId)) {
-      const foundOrder = allParcelDeliveryOrders.find(singleOrder => singleOrder.parcelId == parcelId);
+    const newParcelId = +parcelId;
+    if (typeof (newParcelId) === 'number') {
+      const foundOrder = allParcelDeliveryOrders.find(singleOrder => singleOrder.parcelId === newParcelId);
 
       if (foundOrder) {
         res.status(200).json(
@@ -36,10 +37,9 @@ class Orders {
 
   static getUserOrders(req, res) {
     const { userId } = req.params;
-    if (!isNaN(userId)) {
-      const foundOrders = allParcelDeliveryOrders.filter((singleOrder) => {
-        return singleOrder.userId == userId;
-      });
+    const newUserId = +userId;
+    if (typeof (newUserId) === 'number') {
+      const foundOrders = allParcelDeliveryOrders.filter(singleOrder => singleOrder.userId === newUserId);
 
       if (foundOrders.length >= 1) {
         res.status(200).json(
@@ -50,7 +50,7 @@ class Orders {
         );
       } else {
         res.status(404).json({
-          message: 'Order not found',
+          message: 'User not found',
         });
       }
     } else {
@@ -70,9 +70,10 @@ class Orders {
 
   static cancelParcelDeliveryOrder(req, res) {
     const { parcelId } = req.params;
+    const newParcelId = +parcelId;
 
-    if (!isNaN(parcelId)) {
-      const foundOrder = allParcelDeliveryOrders.filter(singleOrder => singleOrder.parcelId == parcelId);
+    if (typeof (newParcelId) === 'number') {
+      const foundOrder = allParcelDeliveryOrders.filter(singleOrder => singleOrder.parcelId === newParcelId);
       if (foundOrder.length >= 1) {
         switch (foundOrder[0].status) {
           case 'Pending':
