@@ -51,7 +51,7 @@ SendIT is a courier service that helps users deliver parcels to different destin
   <tr>
     <td>GET</td>
     <td>GET a particular order</td>
-    <td>GET /api/v1/parcels/<parcelId></td>
+    <td>GET /api/v1/parcels/:parcelId</td>
   </tr>  
   <tr>
     <td>POST</td>
@@ -61,12 +61,12 @@ SendIT is a courier service that helps users deliver parcels to different destin
   <tr>
     <td>GET</td>
     <td>GET all orders by a user</td>
-    <td>GET /api/v1/users/<userId>/parcels</td>
+    <td>GET /api/v1/users/:userId/parcels</td>
   </tr> 
    <tr>
     <td>PUT</td>
     <td>Cancel an order</td>
-    <td>PUT /api/v1/parcels/<parcelId></td>
+    <td>PUT /api/v1/parcels/:parcelId/cancel</td>
   </tr> 
   
 </table>
