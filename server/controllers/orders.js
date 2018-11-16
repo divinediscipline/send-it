@@ -27,6 +27,26 @@ class Orders {
     }
   }
 
+  static getUserSingleOrder(req, res) {
+    console.log('working');
+    const receivedParcelId = req.params.parcelId;
+    const { userId } = req.params;
+    const allUserOrders = allParcelDeliveryOrders.filter(singleOrder => singleOrder.userId === +userId);
+    const foundOrder = allUserOrders.find(singleOrder => singleOrder.parcelId === +receivedParcelId);
+    if (foundOrder) {
+      res.status(200).json(
+        {
+          message: 'successful',
+          foundOrder,
+        },
+      );
+    } else {
+      res.status(404).json({
+        message: 'Order not found',
+      });
+    }
+  }
+
   static getUserOrders(req, res) {
     const { userId } = req.params;
     const foundOrders = allParcelDeliveryOrders.filter(singleOrder => singleOrder.userId === +userId);
