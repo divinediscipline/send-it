@@ -4,9 +4,9 @@
 [![Coverage Status](https://coveralls.io/repos/github/divinediscipline/send-it/badge.svg)](https://coveralls.io/github/divinediscipline/send-it)
 [![Maintainability](https://api.codeclimate.com/v1/badges/5cca71df07e5907535eb/maintainability)](https://codeclimate.com/github/divinediscipline/send-it/maintainability)
 
-Lives at: https://divinediscipline.github.io/send-it/UI/
+Templates hosted at: https://divinediscipline.github.io/send-it/UI/
 
-SendIT is a courier service that helps users deliver parcels to different destinations. Prices are based on weight categories.
+SendIT is a courier service that helps users deliver parcels to different destinations. Prices are based on weight categories of the parcel.
 
 ## Features
 * Users can Sign up and Sign in.
@@ -18,20 +18,22 @@ SendIT is a courier service that helps users deliver parcels to different destin
 
 ## Technologies used
 
- **User Interface**
-
+**User Interface**
 * HTML
 * CSS
 * Javascript
 
 **Server-side API**
-NodeJS 
-ExpressJS
-Babel
+* NodeJS 
+* ExpressJS
+* Babel
 
 **Testing tools**
-Supertest
-Mocha
+* Supertest
+* Mocha
+
+**Linting library**
+* Eslint
 
 ## Api information
 
@@ -68,3 +70,11 @@ Mocha
   </tr> 
   
 </table>
+
+# How to use
+* Clone the repository
+* run "npm install" to install all the application dependencies. You must have NPM - Node package manager installed to do this.
+* run "npm start" to start up the server at localhost 5000 
+* navigate to localhost:5000/api/v1 to make http requests to the specified endpoints
+
+Api route link: https://thawing-woodland-89801.herokuapp.com
