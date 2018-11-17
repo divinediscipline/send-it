@@ -11,6 +11,7 @@ const router = express.Router();
 router.get('/parcels', orders.getParcelDeliveryOrders);
 router.get('/parcels/:parcelId', checkParcelId, orders.getParcelDeliveryOrder);
 router.get('/users/:userId/parcels', checkUserId, orders.getUserOrders);
+router.get('/users/:userId/:parcelId', checkUserId, checkParcelId, orders.getUserSingleOrder);
 router.put('/parcels/:parcelId/cancel', checkParcelId, orders.cancelParcelDeliveryOrder);
 router.post('/parcels', validateParcelOrder, orders.createParcelDeliveryOrder);
 
