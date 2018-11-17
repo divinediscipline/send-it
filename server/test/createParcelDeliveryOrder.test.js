@@ -7,20 +7,13 @@ import orderData from '../models/db/orderData';
 describe('/POST create a parcel delivery order', () => {
   it('should create a new parcel delivery order', (done) => {
     const testOrder = {
-      sendersFirstName: 'Patience',
-      sendersLastName: 'Sikiru',
-      sendersPhone: '08157585374',
       parcelDescription: '1 bag of rice',
-      weightCategory: '50-99 kg',
-      price: 20000,
       pickUpLocation: 'Lagos state',
       destination: 'Abia state',
-      packageTransitTime: '5 hours',
       receiversFirstName: 'Patience',
       receiversLastName: 'Abdul',
       receiversEmail: 'patience@gmail.com',
-      receiversPhone: '08177648669',
-      status: 'Pending',
+      receiversPhoneNumber: '08177648669',
     };
 
     request(app)
