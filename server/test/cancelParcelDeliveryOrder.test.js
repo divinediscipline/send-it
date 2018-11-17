@@ -22,6 +22,13 @@ describe('/PUT cancel a specific parcel delivery order', () => {
       .end(done);
   });
 
+  it('should return 400 if parcel is already Delivered', (done) => {
+    request(app)
+      .put('/api/v1/parcels/1/cancel')
+      .expect(400)
+      .end(done);
+  });
+
   it('should return the cancelled parcel delivery order', (done) => {
     request(app)
       .put('/api/v1/parcels/4/cancel')
