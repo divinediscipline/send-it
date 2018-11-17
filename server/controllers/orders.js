@@ -28,7 +28,6 @@ class Orders {
   }
 
   static getUserSingleOrder(req, res) {
-    console.log('working');
     const receivedParcelId = req.params.parcelId;
     const { userId } = req.params;
     const allUserOrders = allParcelDeliveryOrders.filter(singleOrder => singleOrder.userId === +userId);
@@ -70,19 +69,13 @@ class Orders {
     const newOrder = {
       parcelId,
       userId,
-      sendersFirstName: req.body.sendersFirstName,
-      sendersLastName: req.body.sendersLastName,
-      sendersPhone: req.body.sendersPhone,
       parcelDescription: req.body.parcelDescription,
-      weightCategory: req.body.weightCategory,
-      price: req.body.price,
       pickUpLocation: req.body.pickUpLocation,
       destination: req.body.destination,
-      packageTransitTime: req.body.packageTransitTime,
       receiversFirstName: req.body.receiversFirstName,
       receiversLastName: req.body.receiversLastName,
       receiversEmail: req.body.receiversEmail,
-      receiversPhone: req.body.receiversPhone,
+      receiversPhoneNumber: req.body.receiversPhoneNumber,
       status: 'Pending',
     };
     allParcelDeliveryOrders.push({
@@ -104,9 +97,13 @@ class Orders {
           message: 'Cancelled successfully',
           cancelledOrder: foundOrder,
         });
+      } else if (foundOrder[0].status === 'Cancelled') {
+        res.status(400).json({
+          message: 'Order is already cancelled, cannot cancel again.',
+        });
       } else {
         res.status(400).json({
-          message: 'Cannot cancel order',
+          message: 'Cannot cancel  an already delivered order',
         });
       }
     } else {
