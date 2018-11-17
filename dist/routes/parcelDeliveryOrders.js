@@ -32,6 +32,7 @@ var router = _express2.default.Router();
 router.get('/parcels', _orders2.default.getParcelDeliveryOrders);
 router.get('/parcels/:parcelId', _checkParcelId2.default, _orders2.default.getParcelDeliveryOrder);
 router.get('/users/:userId/parcels', _checkUserId2.default, _orders2.default.getUserOrders);
+router.get('/users/:userId/:parcelId', _checkUserId2.default, _checkParcelId2.default, _orders2.default.getUserSingleOrder);
 router.put('/parcels/:parcelId/cancel', _checkParcelId2.default, _orders2.default.cancelParcelDeliveryOrder);
 router.post('/parcels', _validateParcelOrder2.default, _orders2.default.createParcelDeliveryOrder);
 

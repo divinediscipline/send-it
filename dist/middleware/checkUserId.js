@@ -23,7 +23,7 @@ var checkUserId = function checkUserId(req, res, next) {
 
   if (validation.fails()) {
     res.status(400).json({
-      message: validation.errors.all()
+      message: validation.errors.all().parcelId[0]
     });
   } else {
     next();

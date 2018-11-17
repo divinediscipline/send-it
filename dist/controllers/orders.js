@@ -45,6 +45,29 @@ var Orders = function () {
       }
     }
   }, {
+    key: 'getUserSingleOrder',
+    value: function getUserSingleOrder(req, res) {
+      var receivedParcelId = req.params.parcelId;
+      var userId = req.params.userId;
+
+      var allUserOrders = _orderData2.default.filter(function (singleOrder) {
+        return singleOrder.userId === +userId;
+      });
+      var foundOrder = allUserOrders.find(function (singleOrder) {
+        return singleOrder.parcelId === +receivedParcelId;
+      });
+      if (foundOrder) {
+        res.status(200).json({
+          message: 'successful',
+          foundOrder: foundOrder
+        });
+      } else {
+        res.status(404).json({
+          message: 'Order not found'
+        });
+      }
+    }
+  }, {
     key: 'getUserOrders',
     value: function getUserOrders(req, res) {
       var userId = req.params.userId;
@@ -71,19 +94,13 @@ var Orders = function () {
       var newOrder = {
         parcelId: parcelId,
         userId: userId,
-        sendersFirstName: req.body.sendersFirstName,
-        sendersLastName: req.body.sendersLastName,
-        sendersPhone: req.body.sendersPhone,
         parcelDescription: req.body.parcelDescription,
-        weightCategory: req.body.weightCategory,
-        price: req.body.price,
         pickUpLocation: req.body.pickUpLocation,
         destination: req.body.destination,
-        packageTransitTime: req.body.packageTransitTime,
         receiversFirstName: req.body.receiversFirstName,
         receiversLastName: req.body.receiversLastName,
         receiversEmail: req.body.receiversEmail,
-        receiversPhone: req.body.receiversPhone,
+        receiversPhoneNumber: req.body.receiversPhoneNumber,
         status: 'Pending'
       };
       _orderData2.default.push({
@@ -109,9 +126,13 @@ var Orders = function () {
             message: 'Cancelled successfully',
             cancelledOrder: foundOrder
           });
+        } else if (foundOrder[0].status === 'Cancelled') {
+          res.status(400).json({
+            message: 'Order is already cancelled, cannot cancel again.'
+          });
         } else {
           res.status(400).json({
-            message: 'Cannot cancel order'
+            message: 'Cannot cancel  an already delivered order'
           });
         }
       } else {

@@ -19,20 +19,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 describe('/POST create a parcel delivery order', function () {
   it('should create a new parcel delivery order', function (done) {
     var testOrder = {
-      sendersFirstName: 'Patience',
-      sendersLastName: 'Sikiru',
-      sendersPhone: '08157585374',
       parcelDescription: '1 bag of rice',
-      weightCategory: '50-99 kg',
-      price: 20000,
       pickUpLocation: 'Lagos state',
       destination: 'Abia state',
-      packageTransitTime: '5 hours',
       receiversFirstName: 'Patience',
       receiversLastName: 'Abdul',
       receiversEmail: 'patience@gmail.com',
-      receiversPhone: '08177648669',
-      status: 'Pending'
+      receiversPhoneNumber: '08177648669'
     };
 
     (0, _supertest2.default)(_server2.default).post('/api/v1/parcels').send(testOrder).expect(201).expect(function (res) {
