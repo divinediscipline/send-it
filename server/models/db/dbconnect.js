@@ -11,15 +11,10 @@ const client = new Client({
 });
 client.connect()
   .then(() => {
-    console.log('connected successfully');
-    const usersTable = `CREATE TABLE IF NOT EXISTS users
-    (
-      id SERIAL PRIMARY KEY,
-      email VARCHAR(100) UNIQUE NOT NULL,
-      firstName VARCHAR(255) NOT NULL,
-      lastName VARCHAR(255) NOT NULL,
-      password VARCHAR(255) NOT NULL,
-      created_on TIMESTAMPTZ DEFAULT now() NOT NULL
-    );`;
-    return client.query(usersTable);
+    console.log('connected to database successfully');
+  })
+  .catch(() => {
+    console.log('Unable to connect to database');
   });
+
+export default client;
