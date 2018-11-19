@@ -6,6 +6,10 @@
 
 Templates hosted at: https://divinediscipline.github.io/send-it/UI/
 
+Api route link: https://thawing-woodland-89801.herokuapp.com
+
+Pivotal tracker board link: https://www.pivotaltracker.com/n/projects/2222426
+
 SendIT is a courier service that helps users deliver parcels to different destinations. Prices are based on weight categories of the parcel.
 
 ## Features
@@ -18,7 +22,10 @@ SendIT is a courier service that helps users deliver parcels to different destin
 
 ## Technologies used
 
-**User Interface**
+**Project management tool**
+* Pivotal tracker
+
+**User interface**
 * HTML
 * CSS
 * Javascript
@@ -77,4 +84,3 @@ SendIT is a courier service that helps users deliver parcels to different destin
 * run "npm start" to start up the server at localhost 5000 
 * navigate to localhost:5000/api/v1 to make http requests to the specified endpoints
 
-Api route link: https://thawing-woodland-89801.herokuapp.com
