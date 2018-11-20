@@ -12,7 +12,7 @@ const router = express.Router();
 // Api routes
 router.post('/auth/signup', validateSignup, userController.signup);
 router.post('/auth/login', validateLogin, userController.login);
-router.get('/parcels', orderController.getParcelDeliveryOrders);
+router.get('/parcels', orderController.getAllOrders);
 router.get('/parcels/:parcelId', checkParcelId, orderController.getParcelDeliveryOrder);
 router.get('/users/:userId/parcels', checkUserId, orderController.getUserOrders);
 router.get('/users/:userId/:parcelId', checkUserId, checkParcelId, orderController.getUserSingleOrder);
