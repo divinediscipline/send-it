@@ -20,5 +20,6 @@ router.put('/parcels/:parcelId/cancel', checkParcelId, orderController.cancelPar
 router.post('/parcels', orderController.createParcelDeliveryOrder);
 router.put('/parcels/:parcelId/destination', orderController.changeParcelDestination);
 router.put('/parcels/:parcelId/status', orderController.changeOrderStatus);
+router.put('/parcels/:parcelId/presentLocation', orderController.changeLocation);
 
 export default router;
