@@ -74,7 +74,8 @@ class OrderController {
       weightMetric VARCHAR(255) NOT NULL,
       sentOn TIMESTAMPTZ DEFAULT now() NOT NULL,
       deliveredOn TIMESTAMPTZ DEFAULT now() NOT NULL,
-      status VARCHAR(20) DEFAULT 'placed' NOT NULL,
+      present_location VARCHAR(255) DEFAULT 'Not available' NOT NULL,
+      status VARCHAR(20) DEFAULT 'Placed' NOT NULL,
       pickupLocation VARCHAR(255) NOT NULL,
       destination VARCHAR(255) NOT NULL,
       receiversEmail VARCHAR(100) NOT NULL
@@ -158,6 +159,28 @@ class OrderController {
         parcel_id: result.rows[0].parcel_id,
         status: result.rows[0].status,
         message: 'Parcel status updated',
+      }];
+      res.status(200).json({
+        data,
+      });
+    }).catch((error) => {
+      res.status(422).json({
+        message: 'Error processing your request',
+        error,
+      });
+    });
+  }
+
+  static changeLocation(req, res) {
+    const { parcelId } = req.params;
+    const { present_location } = req.body;
+    const sql = 'UPDATE parcels SET present_location = $1 WHERE parcel_id = $2 RETURNING parcel_id, present_location';
+    const params = [present_location, parcelId];
+    return client.query(sql, params).then((result) => {
+      const data = [{
+        parcel_id: result.rows[0].parcel_id,
+        status: result.rows[0].present_location,
+        message: 'Parcel location updated',
       }];
       res.status(200).json({
         data,
