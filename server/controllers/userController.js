@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 
 import client from '../models/db/dbconnect';
 import User from '../models/user';
+import helpers from '../helpers/helpers';
 
 class UserController {
   static signup(req, res) {
@@ -18,23 +19,17 @@ class UserController {
     return client.query(usersTable).then(() => {
       const sql = 'SELECT * FROM users WHERE email = $1';
       const params = [req.body.email];
-      console.log('I am here');
       return client.query(sql, params);
     })
       .then((existingUser) => {
         // if there is no existing user with similar email, create one and hash password.
         if (!existingUser.rows[0]) {
-          console.log('got here');
           const user = new User(req.body.email, req.body.password);
-          console.log(user.email);
           bcrypt.genSalt(10, (err, salt) => {
             bcrypt.hash(user.password, salt, (err, hashedPassword) => {
               user.password = hashedPassword;
-              console.log(user.password);
               const sql = 'INSERT INTO users (firstName, lastName, email, password) VALUES ($1, $2, $3, $4)';
               const params = [req.body.firstName, req.body.lastName, user.email, user.password];
-              console.log('inserted successfullly');
-              console.log(req.body.firstName);
               return client.query(sql, params);
             });
           });
@@ -45,14 +40,9 @@ class UserController {
         }
       })
       .then(() => {
-        jwt.sign({ email: req.body.email }, 'abc123', (err, token) => {
-          if (err) {
-            console.log('err', err);
-            return;
-          }
-          res.header('x-auth', token).json({
-            message: 'signed in successfully',
-          });
+        const token = helpers.generateAuthToken(req, res);
+        res.header('x-auth', token).json({
+          message: 'signed up successfully',
         });
       })
       .catch((error) => {
@@ -61,6 +51,37 @@ class UserController {
           error,
         });
       });
+  }
+
+  static login(req, res) {
+    const sql = 'SELECT * FROM users WHERE email = $1';
+    const params = [req.body.email];
+    return client.query(sql, params).then((existingUser) => {
+      if (existingUser.rows[0].email === req.body.email) {
+        bcrypt.compare(req.body.password, existingUser.rows[0].password).then((result) => {
+          if (result) {
+            const token = helpers.generateAuthToken(req, res);
+            res.header('x-auth', token).json({
+              message: 'logged in successfully',
+            });
+          } else {
+            res.status(400).json({
+              message: 'email or password is incorrect.',
+            });
+          }
+        })
+          .catch((error) => {
+            res.status(422).json({
+              message: 'Error processing your request',
+              error,
+            });
+          });
+      } else {
+        res.status(400).json({
+          message: 'email or password is incorrect.',
+        });
+      }
+    });
   }
 }
 
