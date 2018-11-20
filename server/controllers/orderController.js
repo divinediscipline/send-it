@@ -3,12 +3,21 @@ import client from '../models/db/dbconnect';
 
 
 class OrderController {
-  static getParcelDeliveryOrders(req, res) {
-    res.status(200).json(
-      {
-        allParcelDeliveryOrders,
-      },
-    );
+  static getAllOrders(req, res) {
+    const sql = 'SELECT * FROM parcels';
+    return client.query(sql).then((result) => {
+      // const data = [{
+      //   parcel_id: result.rows[0].parcel_id,
+      //   status: result.rows[0].status,
+      //   message: 'Parcel status updated',
+      // }];
+      res.status(200).json(
+        {
+          message: 'All parcel delivery orders',
+          data: [result.rows[0]],
+        },
+      );
+    });
   }
 
   static getParcelDeliveryOrder(req, res) {
