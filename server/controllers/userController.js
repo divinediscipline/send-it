@@ -12,9 +12,13 @@ class UserController {
       userId SERIAL PRIMARY KEY,
       firstName VARCHAR(255) NOT NULL,
       lastName VARCHAR(255) NOT NULL,
+      otherNames VARCHAR(255) NOT NULL,
+      phoneNumber VARCHAR(50) NOT NULL,
       email VARCHAR(100) UNIQUE NOT NULL,
       password VARCHAR(255) NOT NULL,
-      created_on TIMESTAMPTZ DEFAULT now() NOT NULL
+      userName VARCHAR(255) NOT NULL,
+      registered TIMESTAMPTZ DEFAULT now() NOT NULL,
+      isAdmin  boolean DEFAULT false
     );`;
     return client.query(usersTable).then(() => {
       const sql = 'SELECT * FROM users WHERE email = $1';

@@ -1,7 +1,8 @@
 import allParcelDeliveryOrders from '../models/db/orderData';
+import client from '../models/db/dbconnect';
 
 
-class Orders {
+class OrderController {
   static getParcelDeliveryOrders(req, res) {
     res.status(200).json(
       {
@@ -63,27 +64,38 @@ class Orders {
     }
   }
 
+
   static createParcelDeliveryOrder(req, res) {
-    const parcelId = allParcelDeliveryOrders[allParcelDeliveryOrders.length - 1].parcelId + 1;
-    const userId = allParcelDeliveryOrders[allParcelDeliveryOrders.length - 1].userId + 1;
-    const newOrder = {
-      parcelId,
-      userId,
-      parcelDescription: req.body.parcelDescription,
-      pickUpLocation: req.body.pickUpLocation,
-      destination: req.body.destination,
-      receiversFirstName: req.body.receiversFirstName,
-      receiversLastName: req.body.receiversLastName,
-      receiversEmail: req.body.receiversEmail,
-      receiversPhoneNumber: req.body.receiversPhoneNumber,
-      status: 'Pending',
-    };
-    allParcelDeliveryOrders.push({
-      newOrder,
-    });
-    res.status(201).json({
-      message: 'order created successfully',
-      newOrder,
+    const parcelsTable = `CREATE TABLE IF NOT EXISTS parcels
+    (
+      parcel_id SERIAL PRIMARY KEY,
+      parcelDescription VARCHAR(255) NOT NULL,
+      weight float NOT NULL,
+      weightMetric VARCHAR(255) NOT NULL,
+      sentOn TIMESTAMPTZ DEFAULT now() NOT NULL,
+      deliveredOn TIMESTAMPTZ DEFAULT now() NOT NULL,
+      status VARCHAR(20) DEFAULT 'placed' NOT NULL,
+      comingFrom VARCHAR(255) NOT NULL,
+      goingTo VARCHAR(255) NOT NULL,
+      receiversEmail VARCHAR(100) NOT NULL
+    );`;
+    return client.query(parcelsTable).then(() => {
+      const sql = 'INSERT INTO parcels (parcelDescription, weight, weightMetric, comingFrom, goingTo, receiversEmail) VALUES ($1, $2, $3, $4, $5, $6) RETURNING parcel_id';
+      const params = [req.body.parcelDescription, req.body.weight, req.body.weightMetric, req.body.comingFrom, req.body.goingTo, req.body.receiversEmail];
+      return client.query(sql, params);
+    }).then((parcel_id) => {
+      const data = [{
+        parcel_id: parcel_id.rows[0].parcel_id,
+        message: 'order created',
+      }];
+      res.status(201).json({
+        data,
+      });
+    }).catch((error) => {
+      res.status(422).json({
+        message: 'Error processing your request',
+        error,
+      });
     });
   }
 
@@ -114,4 +126,4 @@ class Orders {
   }
 }
 
-export default Orders;
+export default OrderController;
