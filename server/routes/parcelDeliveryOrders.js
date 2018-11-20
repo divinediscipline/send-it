@@ -13,7 +13,7 @@ const router = express.Router();
 router.post('/auth/signup', validateSignup, userController.signup);
 router.post('/auth/login', validateLogin, userController.login);
 router.get('/parcels', orderController.getAllOrders);
-router.get('/parcels/:parcelId', checkParcelId, orderController.getParcelDeliveryOrder);
+router.get('/parcels/:parcelId', checkParcelId, orderController.getOneOrder);
 router.get('/users/:userId/parcels', checkUserId, orderController.getUserOrders);
 router.get('/users/:userId/:parcelId', checkUserId, checkParcelId, orderController.getUserSingleOrder);
 router.put('/parcels/:parcelId/cancel', checkParcelId, orderController.cancelParcelDeliveryOrder);

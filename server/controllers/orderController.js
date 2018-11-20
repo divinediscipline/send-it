@@ -6,35 +6,43 @@ class OrderController {
   static getAllOrders(req, res) {
     const sql = 'SELECT * FROM parcels';
     return client.query(sql).then((result) => {
-      // const data = [{
-      //   parcel_id: result.rows[0].parcel_id,
-      //   status: result.rows[0].status,
-      //   message: 'Parcel status updated',
-      // }];
       res.status(200).json(
         {
           message: 'All parcel delivery orders',
           data: [result.rows[0]],
         },
       );
+    }).catch((error) => {
+      res.status(422).json({
+        message: 'Error processing your request',
+        error,
+      });
     });
   }
 
-  static getParcelDeliveryOrder(req, res) {
-    const receivedParcelId = req.params.parcelId;
-    const foundOrder = allParcelDeliveryOrders.find(singleOrder => singleOrder.parcelId === +receivedParcelId);
-    if (foundOrder) {
-      res.status(200).json(
-        {
-          message: 'successful',
-          foundOrder,
-        },
-      );
-    } else {
-      res.status(404).json({
-        message: 'Order not found',
+  static getOneOrder(req, res) {
+    const { parcelId } = req.params;
+    const sql = 'SELECT * FROM parcels WHERE parcel_id = $1';
+    const params = [parcelId];
+    return client.query(sql, params).then((result) => {
+      if (result.rows[0]) {
+        res.status(200).json(
+          {
+            message: 'Your delivery order',
+            data: [result.rows[0]],
+          },
+        );
+      } else {
+        res.status(404).json({
+          message: 'Order not found',
+        });
+      }
+    }).catch((error) => {
+      res.status(422).json({
+        message: 'Error processing your request',
+        error,
       });
-    }
+    });
   }
 
   static getUserSingleOrder(req, res) {
