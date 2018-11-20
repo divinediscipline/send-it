@@ -75,13 +75,13 @@ class OrderController {
       sentOn TIMESTAMPTZ DEFAULT now() NOT NULL,
       deliveredOn TIMESTAMPTZ DEFAULT now() NOT NULL,
       status VARCHAR(20) DEFAULT 'placed' NOT NULL,
-      comingFrom VARCHAR(255) NOT NULL,
-      goingTo VARCHAR(255) NOT NULL,
+      pickupLocation VARCHAR(255) NOT NULL,
+      destination VARCHAR(255) NOT NULL,
       receiversEmail VARCHAR(100) NOT NULL
     );`;
     return client.query(parcelsTable).then(() => {
-      const sql = 'INSERT INTO parcels (parcelDescription, weight, weightMetric, comingFrom, goingTo, receiversEmail) VALUES ($1, $2, $3, $4, $5, $6) RETURNING parcel_id';
-      const params = [req.body.parcelDescription, req.body.weight, req.body.weightMetric, req.body.comingFrom, req.body.goingTo, req.body.receiversEmail];
+      const sql = 'INSERT INTO parcels (parcelDescription, weight, weightMetric, pickUpLocation, destination, receiversEmail) VALUES ($1, $2, $3, $4, $5, $6) RETURNING parcel_id';
+      const params = [req.body.parcelDescription, req.body.weight, req.body.weightMetric, req.body.pickUpLocation, req.body.destination, req.body.receiversEmail];
       return client.query(sql, params);
     }).then((parcel_id) => {
       const data = [{
@@ -123,6 +123,28 @@ class OrderController {
         message: 'Order not found',
       });
     }
+  }
+
+  static changeParcelDestination(req, res) {
+    const { destination } = req.params;
+    const { parcelId } = req.params;
+    const sql = 'UPDATE parcels SET destination = $1 WHERE parcel_id = $2 RETURNING parcel_id, destination';
+    const params = [destination, parcelId];
+    return client.query(sql, params).then((result) => {
+      const data = [{
+        parcel_id: result.rows[0].parcel_id,
+        destination: result.rows[0].destination,
+        message: 'Parcel destination updated',
+      }];
+      res.status(200).json({
+        data,
+      });
+    }).catch((error) => {
+      res.status(422).json({
+        message: 'Error processing your request',
+        error,
+      });
+    });
   }
 }
 
