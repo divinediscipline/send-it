@@ -126,15 +126,38 @@ class OrderController {
   }
 
   static changeParcelDestination(req, res) {
-    const { destination } = req.params;
+    const { destination } = req.body;
     const { parcelId } = req.params;
     const sql = 'UPDATE parcels SET destination = $1 WHERE parcel_id = $2 RETURNING parcel_id, destination';
     const params = [destination, parcelId];
     return client.query(sql, params).then((result) => {
+      console.log('result', result);
       const data = [{
         parcel_id: result.rows[0].parcel_id,
         destination: result.rows[0].destination,
         message: 'Parcel destination updated',
+      }];
+      res.status(200).json({
+        data,
+      });
+    }).catch((error) => {
+      res.status(422).json({
+        message: 'Error processing your request',
+        error,
+      });
+    });
+  }
+
+  static changeOrderStatus(req, res) {
+    const { parcelId } = req.params;
+    const { status } = req.body;
+    const sql = 'UPDATE parcels SET status = $1 WHERE parcel_id = $2 RETURNING parcel_id, status';
+    const params = [status, parcelId];
+    return client.query(sql, params).then((result) => {
+      const data = [{
+        parcel_id: result.rows[0].parcel_id,
+        status: result.rows[0].status,
+        message: 'Parcel status updated',
       }];
       res.status(200).json({
         data,
