@@ -125,30 +125,27 @@ class OrderController {
     });
   }
 
-  static cancelParcelDeliveryOrder(req, res) {
+
+  static cancelOrder(req, res) {
     const { parcelId } = req.params;
-    const foundOrder = allParcelDeliveryOrders.filter(singleOrder => singleOrder.parcelId === +parcelId);
-    if (foundOrder.length >= 1) {
-      if (foundOrder[0].status !== 'Cancelled' && foundOrder[0].status !== 'Delivered') {
-        foundOrder[0].status = 'Cancelled';
-        res.status(200).json({
-          message: 'Cancelled successfully',
-          cancelledOrder: foundOrder,
-        });
-      } else if (foundOrder[0].status === 'Cancelled') {
-        res.status(400).json({
-          message: 'Order is already cancelled, cannot cancel again.',
-        });
-      } else {
-        res.status(400).json({
-          message: 'Cannot cancel  an already delivered order',
-        });
-      }
-    } else {
-      res.status(404).json({
-        message: 'Order not found',
+    const { status } = req.body;
+    const sql = 'UPDATE parcels SET status = $1 WHERE parcel_id = $2 RETURNING parcel_id, status';
+    const params = [status, parcelId];
+    return client.query(sql, params).then((result) => {
+      const data = [{
+        parcel_id: result.rows[0].parcel_id,
+        status: result.rows[0].status,
+        message: 'Order cancelled',
+      }];
+      res.status(200).json({
+        data,
       });
-    }
+    }).catch((error) => {
+      res.status(422).json({
+        message: 'Error processing your request',
+        error,
+      });
+    });
   }
 
   static changeParcelDestination(req, res) {
