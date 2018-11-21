@@ -45,7 +45,7 @@ class OrderController {
     });
   }
 
-  static getUserSingleOrder(req, res) {
+  static getOneUserOrder(req, res) {
     const receivedParcelId = req.params.parcelId;
     const { userId } = req.params;
     const allUserOrders = allParcelDeliveryOrders.filter(singleOrder => singleOrder.userId === +userId);
@@ -66,19 +66,27 @@ class OrderController {
 
   static getUserOrders(req, res) {
     const { userId } = req.params;
-    const foundOrders = allParcelDeliveryOrders.filter(singleOrder => singleOrder.userId === +userId);
-    if (foundOrders.length >= 1) {
-      res.status(200).json(
-        {
-          message: 'successful',
-          foundOrders,
-        },
-      );
-    } else {
-      res.status(404).json({
-        message: 'User not found',
+    const sql = 'SELECT * FROM parcels WHERE user_id = $1';
+    const params = [userId];
+    return client.query(sql, params).then((result) => {
+      if (result.rows[0]) {
+        res.status(200).json(
+          {
+            message: 'All your parcel delivery orders',
+            data: [result.rows[0]],
+          },
+        );
+      } else {
+        res.status(404).json({
+          message: 'User not found',
+        });
+      }
+    }).catch((error) => {
+      res.status(422).json({
+        message: 'Error processing your request',
+        error,
       });
-    }
+    });
   }
 
 
