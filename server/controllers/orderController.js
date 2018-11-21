@@ -20,7 +20,8 @@ class OrderController {
     });
   }
 
-  static getOneOrder(req, res) {
+  static 
+  getOneOrder(req, res) {
     const { parcelId } = req.params;
     const sql = 'SELECT * FROM parcels WHERE parcel_id = $1';
     const params = [parcelId];
@@ -94,20 +95,22 @@ class OrderController {
     const parcelsTable = `CREATE TABLE IF NOT EXISTS parcels
     (
       parcel_id SERIAL PRIMARY KEY,
-      parcelDescription VARCHAR(255) NOT NULL,
+      parceldescription VARCHAR(255) NOT NULL,
       weight float NOT NULL,
-      weightMetric VARCHAR(255) NOT NULL,
+      weightmetric VARCHAR(255) NOT NULL,
       sentOn TIMESTAMPTZ DEFAULT now() NOT NULL,
       deliveredOn TIMESTAMPTZ DEFAULT now() NOT NULL,
       present_location VARCHAR(255) DEFAULT 'Not available' NOT NULL,
       status VARCHAR(20) DEFAULT 'Placed' NOT NULL,
-      pickupLocation VARCHAR(255) NOT NULL,
+      pickuplocation VARCHAR(255) NOT NULL,
       destination VARCHAR(255) NOT NULL,
-      receiversEmail VARCHAR(100) NOT NULL
+      receiversemail VARCHAR(100) NOT NULL,
+      userid INTEGER NOT NULL,
+      FOREIGN KEY (userid) REFERENCES users (userid) ON DELETE CASCADE
     );`;
     return client.query(parcelsTable).then(() => {
-      const sql = 'INSERT INTO parcels (parcelDescription, weight, weightMetric, pickUpLocation, destination, receiversEmail) VALUES ($1, $2, $3, $4, $5, $6) RETURNING parcel_id';
-      const params = [req.body.parcelDescription, req.body.weight, req.body.weightMetric, req.body.pickUpLocation, req.body.destination, req.body.receiversEmail];
+      const sql = 'INSERT INTO parcels (userid, parceldescription, weight, weightmetric, pickuplocation, destination, receiversemail) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING parcel_id';
+      const params = [req.body.decoded.id, req.body.parceldescription, req.body.weight, req.body.weightmetric, req.body.pickuplocation, req.body.destination, req.body.receiversemail];
       return client.query(sql, params);
     }).then((parcel_id) => {
       const data = [{

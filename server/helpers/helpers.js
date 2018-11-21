@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
 
 class Helpers {
-  static generateAuthToken(req, res) {
-    const token = jwt.sign({ email: req.body.email }, 'abc123');
+  static generateAuthToken(id, email, isadmin) {
+    const token = jwt.sign({ id, email, isadmin }, 'abc123');
     console.log('1***', token);
     return token;
   }
