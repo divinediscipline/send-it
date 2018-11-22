@@ -11,6 +11,7 @@ const router = express.Router();
 
 // Api routes
 router.post('/auth/signup', parcelValidator.validateSignup, userController.signup);
+router.post('/auth/signupAdmin', parcelValidator.validateSignup, userController.signup);
 router.post('/auth/login', parcelValidator.validateLogin, userController.login);
 router.post('/parcels', userAuth.authenticate, parcelValidator.validateParcelOrder, orderController.createParcelDeliveryOrder);
 router.get('/parcels', userAuth.authenticate, userAuth.authenticateAdmin, orderController.getAllOrders);

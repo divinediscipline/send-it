@@ -55,7 +55,7 @@ class UserAuth {
   static verifyId(req, res, next) {
     const token = req.header('x-auth');
     const { parcelId } = req.params;
-    const decoded = jwt.verify(token, 'abc123');
+    const decoded = jwt.verify(token, process.env.SECRET);
     if (decoded.id.toString() === parcelId) {
       next();
     } else {

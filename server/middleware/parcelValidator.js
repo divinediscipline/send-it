@@ -1,5 +1,7 @@
 import Validator from 'validatorjs';
 
+import client from '../models/db/dbconnect';
+
 class parcelValidator {
   static validateParcelOrder(req, res, next) {
     const data = {
