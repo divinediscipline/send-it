@@ -1,34 +1,6 @@
-import jwt from 'jsonwebtoken';
 import Validator from 'validatorjs';
 
-import client from '../models/db/dbconnect';
-
 class parcelValidator {
-  static authenticate(req, res, next) {
-    console.log('this is working');
-    const token = req.header('x-auth');
-    if (!token) {
-      res.status(401).json({
-        message: 'Unauthorized. You need to sign in',
-      });
-    }
-    try {
-      const decoded = jwt.verify(token, 'abc123');
-      const sql = 'SELECT userid FROM users WHERE userid = $1';
-      const params = [decoded.id];
-      return client.query(sql, params).then((result) => {
-        if (result.rows[0]) {
-          req.body.decoded = decoded;
-          next();
-        }
-      });
-    } catch (error) {
-      res.status(401).json({
-        message: 'Token is invald. Please sign up or log in',
-      });
-    }
-  }
-
   static validateParcelOrder(req, res, next) {
     const data = {
       parceldescription: req.body.parceldescription,
@@ -111,6 +83,92 @@ class parcelValidator {
     } else {
       next();
     }
+  }
+
+  static validateCancel(req, res, next) {
+    const { parcelId } = req.params;
+    if (req.body.status !== 'cancel') {
+      return res.status(400).json({
+        message: 'Invalid request. You can only input \'cancel\' ',
+      });
+    }
+    const sql = 'SELECT status FROM parcels WHERE parcel_id = $1';
+    const params = [parcelId];
+    return client.query(sql, params).then((result) => {
+      if (!result.rows[0]) {
+        return res.status(404).json({
+          message: 'Order not found',
+        });
+      }
+      if (result.rows[0].status === 'delivered') {
+        return res.status(400).json({ message: 'Cannot cancel an already delivered order' });
+      }
+      if (result.rows[0].status === 'cancel') {
+        return res.status(400).json({ message: 'order is already cancelled' });
+      }
+      return next();
+    });
+  }
+
+  static validateStatusChange(req, res, next) {
+    const correctEntries = ['Placed', 'Transiting', 'Delivered', 'Cancel'];
+    const { status } = req.body;
+    const { parcelId } = req.params;
+    const sql = 'SELECT status FROM parcels WHERE parcel_id = $1';
+    const params = [parcelId];
+    return client.query(sql, params).then((result) => {
+      if (!result.rows[0]) return res.status(404).json({ message: 'Order not found' });
+      if (result.rows[0].status === 'delivered') return res.status(400).json({ message: 'You cannot change the status of an already delivered order' });
+      if (!status) return res.status(400).json({ message: 'invalid request, new status is not provided' });
+      if (!correctEntries.includes(status)) return res.status(400).json({ message: "Invalid status value. Value must be 'Placed', 'Delivered', 'Transiting' or 'Cancel'" });
+      return next();
+    });
+  }
+
+  static validateDestination(req, res, next) {
+    const data = {
+      destination: req.body.destination,
+    };
+    const rules = {
+      destination: 'required|min:5|string|max:20',
+    };
+    const validation = new Validator(data, rules);
+    if (validation.fails()) {
+      return res.status(400).json({
+        message: validation.errors.all().destination[0],
+      });
+    }
+    const { parcelId } = req.params;
+    const sql = 'SELECT status FROM parcels WHERE parcel_id = $1';
+    const params = [parcelId];
+    return client.query(sql, params).then((result) => {
+      if (!result.rows[0]) return res.status(404).json({ message: 'Order not found' });
+      if (result.rows[0].status === 'Delivered') return res.status(400).json({ message: 'You cannot change the destination of an already delivered order' });
+      return next();
+    });
+  }
+
+  static validateLocation(req, res, next) {
+    const data = {
+      present_location: req.body.present_location,
+    };
+    const rules = {
+      present_location: 'required|min:5|string|max:20',
+    };
+    const validation = new Validator(data, rules);
+    if (validation.fails()) {
+      return res.status(400).json({
+        message: validation.errors.all().present_location[0],
+      });
+    }
+    const { parcelId } = req.params;
+    const sql = 'SELECT status FROM parcels WHERE parcel_id = $1';
+    const params = [parcelId];
+    return client.query(sql, params).then((result) => {
+      if (!result.rows[0]) return res.status(404).json({ message: 'Order not found' });
+      if (result.rows[0].status === 'Delivered') return res.status(400).json({ message: 'You cannot change the present location of an already delivered order' });
+      return next();
+    });
   }
 }
 
