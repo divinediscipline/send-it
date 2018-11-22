@@ -1,9 +1,11 @@
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 class Helpers {
-  static generateAuthToken(req, res) {
-    const token = jwt.sign({ email: req.body.email }, 'abc123');
-    console.log('1***', token);
+  static generateAuthToken(id, email, isadmin) {
+    const token = jwt.sign({ id, email, isadmin }, process.env.SECRET);
     return token;
   }
 }

@@ -1,14 +1,14 @@
 import Validator from 'validatorjs';
 
-const validateLogin = (req, res, next) => {
+const checkParcelDetails = (req, res, next) => {
   const data = {
-    email: req.body.email,
-    password: req.body.password,
+    parcelId: req.params.parcelId,
+    status: req.body.status,
   };
 
   const rules = {
-    email: 'required|email',
-    password: 'required|min:4|max:20',
+    parcelId: 'required|integer',
+    status: 'required|min:5|string|max:6',
   };
 
   const validation = new Validator(data, rules);
@@ -22,4 +22,4 @@ const validateLogin = (req, res, next) => {
   }
 };
 
-export default validateLogin;
+export default checkParcelDetails;

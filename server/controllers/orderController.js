@@ -1,4 +1,3 @@
-import allParcelDeliveryOrders from '../models/db/orderData';
 import client from '../models/db/dbconnect';
 
 
@@ -13,12 +12,13 @@ class OrderController {
         },
       );
     }).catch((error) => {
-      res.status(422).json({
+      res.status(500).json({
         message: 'Error processing your request',
         error,
       });
     });
   }
+
 
   static getOneOrder(req, res) {
     const { parcelId } = req.params;
@@ -28,7 +28,7 @@ class OrderController {
       if (result.rows[0]) {
         res.status(200).json(
           {
-            message: 'Your delivery order',
+            message: 'Order retrieved successfully',
             data: [result.rows[0]],
           },
         );
@@ -38,35 +38,16 @@ class OrderController {
         });
       }
     }).catch((error) => {
-      res.status(422).json({
+      res.status(500).json({
         message: 'Error processing your request',
         error,
       });
     });
   }
 
-  static getOneUserOrder(req, res) {
-    const receivedParcelId = req.params.parcelId;
-    const { userId } = req.params;
-    const allUserOrders = allParcelDeliveryOrders.filter(singleOrder => singleOrder.userId === +userId);
-    const foundOrder = allUserOrders.find(singleOrder => singleOrder.parcelId === +receivedParcelId);
-    if (foundOrder) {
-      res.status(200).json(
-        {
-          message: 'successful',
-          foundOrder,
-        },
-      );
-    } else {
-      res.status(404).json({
-        message: 'Order not found',
-      });
-    }
-  }
-
   static getUserOrders(req, res) {
     const { userId } = req.params;
-    const sql = 'SELECT * FROM parcels WHERE user_id = $1';
+    const sql = 'SELECT * FROM parcels WHERE userid = $1';
     const params = [userId];
     return client.query(sql, params).then((result) => {
       if (result.rows[0]) {
@@ -82,7 +63,7 @@ class OrderController {
         });
       }
     }).catch((error) => {
-      res.status(422).json({
+      res.status(500).json({
         message: 'Error processing your request',
         error,
       });
@@ -91,25 +72,9 @@ class OrderController {
 
 
   static createParcelDeliveryOrder(req, res) {
-    const parcelsTable = `CREATE TABLE IF NOT EXISTS parcels
-    (
-      parcel_id SERIAL PRIMARY KEY,
-      parcelDescription VARCHAR(255) NOT NULL,
-      weight float NOT NULL,
-      weightMetric VARCHAR(255) NOT NULL,
-      sentOn TIMESTAMPTZ DEFAULT now() NOT NULL,
-      deliveredOn TIMESTAMPTZ DEFAULT now() NOT NULL,
-      present_location VARCHAR(255) DEFAULT 'Not available' NOT NULL,
-      status VARCHAR(20) DEFAULT 'Placed' NOT NULL,
-      pickupLocation VARCHAR(255) NOT NULL,
-      destination VARCHAR(255) NOT NULL,
-      receiversEmail VARCHAR(100) NOT NULL
-    );`;
-    return client.query(parcelsTable).then(() => {
-      const sql = 'INSERT INTO parcels (parcelDescription, weight, weightMetric, pickUpLocation, destination, receiversEmail) VALUES ($1, $2, $3, $4, $5, $6) RETURNING parcel_id';
-      const params = [req.body.parcelDescription, req.body.weight, req.body.weightMetric, req.body.pickUpLocation, req.body.destination, req.body.receiversEmail];
-      return client.query(sql, params);
-    }).then((parcel_id) => {
+    const sql = 'INSERT INTO parcels (userid, parceldescription, weight, weightmetric, pickuplocation, destination, receiversemail) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING parcel_id';
+    const params = [req.body.decoded.id, req.body.parceldescription, req.body.weight, req.body.weightmetric, req.body.pickuplocation, req.body.destination, req.body.receiversemail];
+    return client.query(sql, params).then((parcel_id) => {
       const data = [{
         parcel_id: parcel_id.rows[0].parcel_id,
         message: 'order created',
@@ -118,7 +83,7 @@ class OrderController {
         data,
       });
     }).catch((error) => {
-      res.status(422).json({
+      res.status(500).json({
         message: 'Error processing your request',
         error,
       });
@@ -137,11 +102,11 @@ class OrderController {
         status: result.rows[0].status,
         message: 'Order cancelled',
       }];
-      res.status(200).json({
+      return res.status(200).json({
         data,
       });
     }).catch((error) => {
-      res.status(422).json({
+      return res.status(500).json({
         message: 'Error processing your request',
         error,
       });
@@ -154,7 +119,6 @@ class OrderController {
     const sql = 'UPDATE parcels SET destination = $1 WHERE parcel_id = $2 RETURNING parcel_id, destination';
     const params = [destination, parcelId];
     return client.query(sql, params).then((result) => {
-      console.log('result', result);
       const data = [{
         parcel_id: result.rows[0].parcel_id,
         destination: result.rows[0].destination,
@@ -164,7 +128,7 @@ class OrderController {
         data,
       });
     }).catch((error) => {
-      res.status(422).json({
+      res.status(500).json({
         message: 'Error processing your request',
         error,
       });
@@ -186,7 +150,7 @@ class OrderController {
         data,
       });
     }).catch((error) => {
-      res.status(422).json({
+      res.status(500).json({
         message: 'Error processing your request',
         error,
       });
@@ -208,7 +172,7 @@ class OrderController {
         data,
       });
     }).catch((error) => {
-      res.status(422).json({
+      res.status(500).json({
         message: 'Error processing your request',
         error,
       });
