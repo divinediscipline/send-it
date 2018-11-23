@@ -10,7 +10,7 @@ Api route link: https://thawing-woodland-89801.herokuapp.com
 
 Pivotal tracker board link: https://www.pivotaltracker.com/n/projects/2222426
 
-SendIT is a courier service that helps users deliver parcels to different destinations. Prices are based on weight categories of the parcel.
+SendIT is a courier service that helps users deliver parcels to different destinations. Parcel prices are based on weight categories of the parcel.
 
 ## Features
 * Users can Sign up and Sign in.
