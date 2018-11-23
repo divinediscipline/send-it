@@ -33,14 +33,16 @@ const parcelsTable = `CREATE TABLE IF NOT EXISTS parcels
   userid INTEGER NOT NULL,
   FOREIGN KEY (userid) REFERENCES users (userid) ON DELETE CASCADE
 );`;
-
-const client = new Client({
+const dbconnection = {
   user: process.env.PG_USER,
   host: process.env.PG_HOST,
   database: process.env.PG_DATABASE,
   password: process.env.PG_PASSWORD,
   port: 5432,
-});
+};
+
+const connectionString = process.env.DATABASE_URL || dbconnection;
+const client = new Client(connectionString);
 client.connect()
   .then(() => {
     console.log('connected to database successfully');
