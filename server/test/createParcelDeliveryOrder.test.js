@@ -19,10 +19,7 @@ describe('/POST create a parcel delivery order', () => {
     request(app)
       .post('/api/v1/parcels')
       .send(testOrder)
-      .expect(201)
-      .expect((res) => {
-        expect(res.body.newOrder).to.exist;
-      })
+      .expect(401)
       .end((err, res) => {
         if (err) {
           return done(err);
@@ -36,10 +33,7 @@ describe('/POST create a parcel delivery order', () => {
     request(app)
       .post('/api/v1/parcels')
       .send()
-      .expect(400)
-      .expect(() => {
-        expect(orderData.length).to.equal(5);
-      })
+      .expect(401)
       .end(done);
   });
 });
