@@ -56,11 +56,26 @@ class UserAuth {
     const token = req.header('x-auth');
     const { parcelId } = req.params;
     const decoded = jwt.verify(token, process.env.SECRET);
-    if (decoded.id.toString() === parcelId) {
-      next();
-    } else {
-      res.status(401).json({
-        message: 'Token is invald for requested resource. Please sign up or log in',
+    try {
+      const sql = 'SELECT userid FROM parcels WHERE parcel_id = $1';
+      const params = [parcelId];
+      return client.query(sql, params).then((result) => {
+        console.log('1****', result.rows[0]);
+        console.log('2****', decoded.id);
+        if (result.rows[0].userid == decoded.id) {
+          return next();
+        }
+        return res.status(401).json({
+          message: 'Token is invald for the requested resource. Please sign up or log in',
+        });
+      }).catch(() => {
+        return res.status(400).json({
+          message: 'order does not exist',
+        });
+      });
+    } catch (error) {
+      return res.status(401).json({
+        message: 'Token is invald. Please sign up or log in',
       });
     }
   }
