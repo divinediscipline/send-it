@@ -33,6 +33,7 @@ const parcelsTable = `CREATE TABLE IF NOT EXISTS parcels
   userid INTEGER NOT NULL,
   FOREIGN KEY (userid) REFERENCES users (userid) ON DELETE CASCADE
 );`;
+
 const dbconnection = {
   user: process.env.PG_USER,
   host: process.env.PG_HOST,
@@ -40,8 +41,24 @@ const dbconnection = {
   password: process.env.PG_PASSWORD,
   port: 5432,
 };
+const dbconnectionTest = {
+  user: process.env.PG_USER,
+  host: process.env.PG_HOST,
+  database: process.env.PG_DATABASETEST,
+  password: process.env.PG_PASSWORD,
+  port: 5432,
+};
 
-const connectionString = process.env.DATABASE_URL || dbconnection;
+// connectionString set to heroku-postgres database by default
+let connectionString = process.env.DATABASE_URL;
+
+const environment = process.env.NODE_ENV || 'development';
+if (environment === 'development') {
+  connectionString = dbconnection;
+} else if (environment === 'test') {
+  connectionString = dbconnectionTest;
+}
+console.log('environment***', environment);
 const client = new Client(connectionString);
 client.connect()
   .then(() => {
