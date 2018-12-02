@@ -58,6 +58,11 @@ class UserController {
     const sql = 'SELECT * FROM users WHERE email = $1';
     const params = [req.body.email];
     return client.query(sql, params).then((existingUser) => {
+      if (!existingUser.rows[0]) {
+        return res.status(401).json({
+          message: 'email or password is incorrect.',
+        });
+      }
       if (existingUser.rows[0].email === req.body.email) {
         const returnedUser = {
           userid: existingUser.rows[0].userid,
@@ -84,9 +89,6 @@ class UserController {
           });
         });
       }
-      return res.status(401).json({
-        message: 'email or password is incorrect.',
-      });
     }).catch((error) => {
       res.status(500).json({
         message: 'Error processing your request',
