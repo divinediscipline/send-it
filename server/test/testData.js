@@ -1,9 +1,9 @@
-
 import bcrypt from 'bcryptjs';
-// import request from 'supertest';
+import request from 'supertest';
 // import { expect } from 'chai';
 
 import client from '../models/db/dbconnect';
+import app from '../server';
 
 const testUser = {
   firstname: 'Dino',
@@ -25,13 +25,19 @@ const testOrder = {
 };
 
 const clearTables = () => {
-  before( async () => {
-    console.log('printthat');
+  before(async () => {
     await client.query('TRUNCATE TABLE parcels, users');
   });
 };
-
-const addUser = () => {
+// const addUser = () => {
+//   before(async () => {
+//     const result = await request(app)
+//       .post('/api/v1/parcels')
+//       .send(testUser)
+//     result.body.token = userToken;
+//   });
+// };
+const addAdmin = () => {
   console.log('got here1*****', testUser.password);
   before((done) => {
     bcrypt.genSalt(10, (err, salt) => {
@@ -52,5 +58,5 @@ const addUser = () => {
 };
 
 export {
-  testOrder, testUser, clearTables, addUser,
+  testOrder, testUser, clearTables,
 };
