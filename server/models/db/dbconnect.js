@@ -62,13 +62,10 @@ console.log('environment***', environment);
 const client = new Client(connectionString);
 client.connect()
   .then(() => {
-    console.log('connected to database successfully');
+    return console.log('connected to database successfully');
   }).then(() => {
-    return client.query(usersTable).then(() => {
-
-    }).then(() => {
-      return client.query(parcelsTable);
-    });
+    console.log('users table created');
+    return client.query(`${usersTable} ${parcelsTable}`);
   })
   .catch(() => {
     console.log('Unable to connect to database');

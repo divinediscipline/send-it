@@ -1,11 +1,10 @@
 import request from 'supertest';
 import { expect } from 'chai';
 
-
 import app from '../server';
-import { testUser, clearTables, testOrder } from './testData';
+import { testUser, clearTablesIfExist, testOrder } from './testData';
 
-clearTables();
+clearTablesIfExist();
 let userToken;
 let userid;
 

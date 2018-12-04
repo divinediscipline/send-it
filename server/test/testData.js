@@ -29,6 +29,15 @@ const clearTables = () => {
     await client.query('TRUNCATE TABLE parcels, users');
   });
 };
+
+const clearTablesIfExist = () => {
+  before(async () => {
+    const found = await client.query('SELECT to_regclass(\'parcels\')');
+    if (found.rows[0].to_regclass) {
+      await client.query('TRUNCATE TABLE parcels, users');
+    }
+  });
+};
 // const addUser = () => {
 //   before(async () => {
 //     const result = await request(app)
@@ -58,5 +67,5 @@ const addAdmin = () => {
 };
 
 export {
-  testOrder, testUser, clearTables,
+  testOrder, testUser, clearTables, clearTablesIfExist,
 };
