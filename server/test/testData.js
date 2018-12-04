@@ -30,10 +30,25 @@ const clearTables = () => {
   });
 };
 
+// const clearTablesIfExist = () => {
+//   before(async () => {
+//     const found = await client.query('SELECT to_regclass(\'parcels\')');
+//     if (found.rows[0].to_regclass) {
+//       await client.query('TRUNCATE TABLE parcels, users');
+//     }
+//   });
+// };
+
 const clearTablesIfExist = () => {
   before(async () => {
-    const found = await client.query('SELECT to_regclass(\'parcels\')');
-    if (found.rows[0].to_regclass) {
+    const sql = `SELECT EXISTS
+    (
+      SELECT 1
+    FROM pg_tables
+    WHERE tablename = 'parcels'
+    )`;
+    const found = await client.query(sql);
+    if (found.rows[0].exists) {
       await client.query('TRUNCATE TABLE parcels, users');
     }
   });
