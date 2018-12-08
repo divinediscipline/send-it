@@ -3,6 +3,7 @@ const submitData = async (form) => {
     email: form.email.value,
     password: form.password.value,
   });
+  console.log(data);
   const response = await fetch('/api/v1/auth/login', {
     method: 'POST',
     headers: {
@@ -12,9 +13,9 @@ const submitData = async (form) => {
   });
   const body = await response.json();
   console.log('body', body);
-  // if (response.status !== 200) return;
+  if (response.status !== 200) return;
   // localStorage.setItem('token', body.token);
-  // window.location.href = '../dashboard.html';
+  window.location.href = '../dashboard.html';
 };
 
 const loginFormElem = document.getElementById('login-form');

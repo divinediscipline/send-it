@@ -27,17 +27,13 @@
     <form id="login-form" class="login-form">
       <h2 class="login-form__heading">Welcome Back</h2>
       <div class="login-form__form-group">
-        <!-- <label for="firstname">First Name</label>
-            <input class="login-form__input" type="text" id="firstname">
-            <label for="lastname">Last Name</label>
-            <input class="login-form__input" type="text" id="lastname"> -->
         <label for="email">Email</label>
-        <input class="login-form__input" type="text" id="email">
+        <input class="login-form__input" type="email" name="email" id="email" required>
         <label for="psw">Password</label>
-        <input class="login-form__input" type="password" id="password">
+        <input class="login-form__input" type="password" name="password" id="password" required>
       </div>
       
-      <button class="login-form__button">Log in</button>
+      <button class="login-form__button" type="submit" >Log in</button>
       <p class="login-form__signup-link-text">Don't have an account? <a href="./signup.html" class="login-form__signup-link">Sign
           up</a></p>
     </form>
