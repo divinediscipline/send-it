@@ -1,6 +1,10 @@
 module.exports = {
   "extends": "airbnb-base",
-  "rules":{
+  "rules": {
     "linebreak-style": 0
+  },
+  "env": {
+    "browser": true,
+    "node": true
   }
 };

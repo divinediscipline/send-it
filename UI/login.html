@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
     crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Pattaya" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Pattaya" rel="stylesheet">
   <title>login</title>
 </head>
 
@@ -24,26 +24,25 @@
   </div>
 
   <main class="main-section">
-      <form class="login-form">
-          <h2 class="login-form__heading">Welcome Back</h2>
-          <div class="login-form__form-group">
-            <!-- <label for="firstname">First Name</label>
+    <form id="login-form" class="login-form">
+      <h2 class="login-form__heading">Welcome Back</h2>
+      <div class="login-form__form-group">
+        <!-- <label for="firstname">First Name</label>
             <input class="login-form__input" type="text" id="firstname">
             <label for="lastname">Last Name</label>
             <input class="login-form__input" type="text" id="lastname"> -->
-            <label for="email">Email</label>
-            <input class="login-form__input" type="text" id="email">
-            <label for="psw">Password</label>
-            <input class="login-form__input" type="password" id="password">
-            <!-- <label for="psw-confirm">Confirm password</label>
-            <input class="login-form__input" type="psw" id="password"> -->
-          </div>
-          
-          <a href="./dashboard.html" class="login-form__button">Log in</a>
-          <p class="login-form__signup-link-text">Don't have an account? <a href="./signup.html" class="login-form__signup-link" >Sign up</a></p>
-        </form>
+        <label for="email">Email</label>
+        <input class="login-form__input" type="text" id="email">
+        <label for="psw">Password</label>
+        <input class="login-form__input" type="password" id="password">
+      </div>
+      
+      <button class="login-form__button">Log in</button>
+      <p class="login-form__signup-link-text">Don't have an account? <a href="./signup.html" class="login-form__signup-link">Sign
+          up</a></p>
+    </form>
   </main>
-  
+  <script src="./js/login.js"></script>
 </body>
 
 </html>

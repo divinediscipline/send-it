@@ -8,11 +8,9 @@ const usersTable = `CREATE TABLE IF NOT EXISTS users
   userid SERIAL PRIMARY KEY,
   firstname VARCHAR(255) NOT NULL,
   lastname VARCHAR(255) NOT NULL,
-  othernames VARCHAR(255) NOT NULL,
   phonenumber VARCHAR(50) NOT NULL,
   email VARCHAR(100) UNIQUE NOT NULL,
   password VARCHAR(255) NOT NULL,
-  username VARCHAR(255) NOT NULL,
   registered TIMESTAMPTZ DEFAULT now() NOT NULL,
   isadmin boolean DEFAULT false
 );`;

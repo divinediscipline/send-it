@@ -12,6 +12,7 @@ app.use(logger('dev'));
 // Parse incoming requests data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static('UI'));
 app.use('/api/v1', parcelDeliveryOrders);
 
 

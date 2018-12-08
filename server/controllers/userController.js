@@ -17,17 +17,15 @@ class UserController {
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(user.password, salt, (err, hashedPassword) => {
             user.password = hashedPassword;
-            const sql = 'INSERT INTO users (firstname, lastname, othernames, phonenumber, username, email, password) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *';
-            const params = [req.body.firstname, req.body.lastname, req.body.othernames, req.body.phonenumber, req.body.username, user.email, user.password];
+            const sql = 'INSERT INTO users (firstname, lastname, phonenumber, email, password) VALUES ($1, $2, $3, $4, $5) RETURNING *';
+            const params = [req.body.firstname, req.body.lastname, req.body.phonenumber, user.email, user.password];
             return client.query(sql, params).then((existingUser) => {
               const newUser = {
                 userid: existingUser.rows[0].userid,
                 firstname: existingUser.rows[0].firstname,
                 lastname: existingUser.rows[0].lastname,
-                othernames: existingUser.rows[0].othernames,
                 phonenumber: existingUser.rows[0].phonenumber,
                 email: existingUser.rows[0].email,
-                username: existingUser.rows.username,
                 registered: existingUser.rows[0].registered,
                 isadmin: existingUser.rows[0].isadmin,
               };

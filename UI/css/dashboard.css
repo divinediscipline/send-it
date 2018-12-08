@@ -22,20 +22,61 @@
   align-items: center;
 }
 
-.header__logout {
-  background-color: #fff;
-  color: #51BB7B;
+.header__profile-box {
+  font-size: 2rem;
   font-weight: bold;
-  margin: 0 3rem 0 14rem;
-  text-decoration: none;
-  font-size: 1.8rem;
-  border-radius: 100px;
-  padding: .4rem 3rem;
+  margin: 0 5rem 0 14rem;
+  color: #205334;
+
+  position: relative;
+  display: inline-block;
 }
 
-.header__logout:hover {
-  color: #222;
-  font-weight: bold;
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:focus,
+.dropbtn:hover {
+  background-color: #2980B9;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: .3rem;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 1;
+  font-size: 1.2rem;
+  
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:focus,
+.dropbtn:hover {
+  background-color: #2980B9;
+}
+
+.show {
+  display: block;
 }
 
 .main-content {
@@ -61,15 +102,16 @@
 .order-cards {
   display: flex;
   flex-wrap: wrap;
-  margin: 5rem 2rem 0;
+  justify-content: center;
+  margin: 3rem 2rem 0  2rem;
   color: #222;
-  padding-bottom: 50rem;
+  padding-bottom: 10rem;
 }
 
 .order-cards__card {
   flex: 0 1 26rem;
   background-color: red;
-  margin-left: 1rem;
+  margin: 2rem 0 0 1rem;
   background-color: #fff;
   border-top: 4px solid #205334;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.5);
@@ -89,9 +131,13 @@
 }
 
 .order-cards__field-group {
-  margin-left: 2rem;
+  padding-left: 2rem;
   margin-bottom: 2rem;
   font-size: 1.4rem;
+}
+
+.order-cards__field-group--grey {
+  background-color: #f0f0f0;
 }
 
 .order-cards__desc-heading {
@@ -123,18 +169,36 @@
   border: none;
   outline: 0;
   padding: 12px;
-  color: #51BB7B;
-  background-color: #eee;
+  color: #eee;
+  background-color: #76c997;
   text-align: center;
   cursor: pointer;
   width: 100%;
   font-size: 1.6rem;
 }
 
-.order-cards__btn button:hover {
-  /* background-color: #ccc; */
-  color: #205334;
+
+.pagination__content {
+  display: inline-block;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
 }
+
+.pagination a {
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #51BB7B;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+
 
 .create-order-btn {
   background-color: #51BB7B;
@@ -147,15 +211,15 @@
   font-size: 1.4rem;
 
   position: fixed;
-  right: 16rem;
-  bottom: 5rem;
+  right: 8rem;
+  top: 9rem;
 }
 
-.btn-add {
+.btn-add-mobile {
   display: none;
 }
 
-.btn-add__icon {
+.btn-add-mobile__icon {
   display: none;
 }
 
@@ -172,7 +236,6 @@
 
 /* 1000px  1000/16 = 62.5 */
 @media only screen and (max-width: 62.5em) {
-
   .header {
     height: 24rem;
     flex-direction: column;
@@ -182,7 +245,6 @@
 
   .logo-box {
     display: flex;
-    /* align-items: center; */
     background-color: #51BB7B;
     margin-left: 0;
     padding-left: 3rem;
@@ -236,11 +298,12 @@
   .order-cards__card {
     margin-top: 4rem;
   }
+
   .create-order-btn {
     display: none;
   }
 
-  .btn-add {
+  .btn-add-mobile {
     height: 7.5rem;
     width: 7.5rem;
     background-color: #51BB7B;
@@ -253,7 +316,7 @@
     box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
   }
 
-  .btn-add__icon {
+  .btn-add-mobile__icon {
     display: initial;
     position: fixed;
     /* right: 18rem; */
@@ -264,25 +327,29 @@
   }
 }
 
-
 /* 680px */
 @media screen and (max-width: 42.5em) {
-  .btn-add {
+  .btn-add-mobile {
     right: 4rem;
   }
-  .btn-add__icon {
+
+  .btn-add-mobile__icon {
     right: 6rem;
   }
+
 }
 
-/* 612px  612/16 = 38.25 */
-@media only screen and (max-width: 38.3em) {
+/* 630px  630/16 = 39.4*/
+@media only screen and (max-width: 39.4em) {
   .footer {
+    display: flex;
     flex-direction: column;
+    height: 22rem;
   }
 
   .footer > span {
-    padding-top: 1rem;
+    padding-top: .7rem;
+    margin-right: 0;
   }
 }
 
@@ -291,11 +358,13 @@
   html {
     font-size: 50%;
   }
-  .btn-add {
+
+  .btn-add-mobile {
     right: 1rem;
-    bottom: 1rem
+    bottom: 1rem;
   }
-  .btn-add__icon {
+
+  .btn-add-mobile__icon {
     right: 3.1rem;
     bottom: 3rem;
   }
