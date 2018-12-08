@@ -14,7 +14,7 @@ body {
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
   line-height: 1.6;
-  color: #fff;
+  color: #f0f0f0;
 }
 .logo-box {
   font-weight: bold;
@@ -49,8 +49,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20rem;
-  /* background-color: #51BB7B; */
+  height: 8rem;
   background-color: #bfe6ce;
   color: #777;
   font-size: 1.4rem;

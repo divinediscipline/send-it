@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import app from '../server';
 import { testUser, clearTablesIfExist, testOrder } from './testData';
 
-clearTablesIfExist();
+// clearTablesIfExist();
 let userToken;
 let userid;
 

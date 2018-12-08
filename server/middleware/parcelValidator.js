@@ -37,9 +37,7 @@ class parcelValidator {
     const data = {
       firstname: req.body.firstname,
       lastname: req.body.lastname,
-      othernames: req.body.othernames,
       phonenumber: req.body.phonenumber,
-      username: req.body.username,
       email: req.body.email,
       password: req.body.password,
     };
@@ -47,9 +45,7 @@ class parcelValidator {
     const rules = {
       firstname: 'required|min:3|string|alpha|max:20',
       lastname: 'required|min:3|string|alpha|max:20',
-      othernames: 'required|min:3|string|alpha|max:20',
       phonenumber: 'required|numeric',
-      username: 'required|min:3|string|max:20',
       email: 'required|email',
       password: 'required|min:4|max:20',
     };

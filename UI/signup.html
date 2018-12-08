@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
     crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Pattaya" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Pattaya" rel="stylesheet">
   <title>Signup</title>
 </head>
 
@@ -24,25 +24,28 @@
   </div>
 
   <main class="main-section">
-      <form class="signup-form">
-          <h2 class="signup-form__heading">Create account</h2>
-          <div class="signup-form__form-group">
-            <label for="firstname">First Name</label>
-            <input class="signup-form__input" type="text" id="firstname">
-            <label for="lastname">Last Name</label>
-            <input class="signup-form__input" type="text" id="lastname">
-            <label for="email">Email</label>
-            <input class="signup-form__input" type="text" id="email">
-            <label for="psw">Password</label>
-            <input class="signup-form__input" type="password" id="password">
-            <label for="psw-confirm">Confirm password</label>
-            <input class="signup-form__input" type="psw" id="password">
-          </div>
-          <a href="./dashboard.html" class="signup-form__button" >sign up</a>
-          <p class="signup-form__login-link-text">Already have an account? <a href="./login.html" class="signup-form__login-link">Log in</a></p>
-        </form>
+    <form id="signup-form" class="signup-form">
+      <h2 class="signup-form__heading">Create account</h2>
+      <div class="signup-form__form-group">
+        <label for="firstname">First Name</label>
+        <input class="signup-form__input" type="text" id="firstname" name="firstname" required>
+        <label for="lastname">Last Name</label>
+        <input class="signup-form__input" type="text" id="lastname" name="lastname" required>
+        <label for="email">Email</label>
+        <input class="signup-form__input" type="email" id="email" name="email" required>
+        <label for="lastname">Phone Number</label>
+        <input class="signup-form__input" type="number" id="phoneno" name="phonenumber" required>
+        <label for="psw">Password</label>
+        <input class="signup-form__input" type="password" id="password" name="password" required>
+        <label for="psw-confirm">Confirm password</label>
+        <input class="signup-form__input" type="password" id="password-confirm" name="passwordConfirm" required>
+      </div>
+      <button class="signup-form__button" type="submit">sign up</button>
+      <p class="signup-form__login-link-text">Already have an account? <a href="./login.html" class="signup-form__login-link">Log
+          in</a></p>
+    </form>
   </main>
-  
+  <script src="./js/signup.js"></script>
 </body>
 
 </html>

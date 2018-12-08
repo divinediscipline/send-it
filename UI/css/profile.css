@@ -1,0 +1,391 @@
+.header {
+  background-color: #51BB7B;
+  height: 7rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__options > a {
+  text-decoration: none;
+  color: #fff;
+  margin-right: 3rem;
+  font-size: 1.7rem;
+}
+
+.header__options > a:hover {
+  color: #222;
+  font-weight: bold;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+}
+
+.main-content {
+  display: flex;
+  background-color: #f0f0f0;
+  padding-top: 7rem;
+  color: #777;
+  padding-bottom: 2rem;
+
+}
+
+.profile-section {
+  display: flex;
+  justify-content: center;
+  flex: 0 0 35%;
+  padding: 10rem 0 0 5rem;
+}
+
+.details-section {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  flex: 1;
+  padding-right: 3rem;
+}
+
+.btn-add-mobile {
+  display: none;
+}
+
+.create-order-btn {
+  background-color: #51BB7B;
+  padding: 1rem 2rem;
+  border-radius: 100px;
+  display: inline-block;
+  margin-top: 1rem;
+  letter-spacing: .2rem;
+  font-weight: bold;
+  font-size: 1.4rem;
+  position: fixed;
+  right: 8rem;
+  top: 9rem;
+}
+
+.create-order-btn:hover {
+  background-color: #8ed3a9;
+}
+
+.create-order-btn:active,
+.create-order-btn:link,
+.create-order-btn:visited {
+  text-decoration: none;
+  color: #fff;
+}
+
+.hero__btn--profile {
+  background-color: #51BB7B;
+  padding: 1rem 6rem;
+  display: inline-block;
+  margin: 1rem 1rem 3rem 0;
+  letter-spacing: .2rem;
+  font-size: 1.3rem;
+  border-radius: 7px;
+  align-self: flex-start;
+}
+
+.hero__btn:hover {
+  background-color: #8ed3a9;
+  color: #222;
+  font-weight: bold;
+}
+
+.hero__btn--profile:active,
+.hero__btn--profile:hover,
+.hero__btn--profile:link,
+.hero__btn--profile:visited {
+  text-decoration: none;
+  color: #fff;
+}
+
+.profile-image-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-image-pic {
+  border-radius: 50%;
+}
+
+.profile-image-select {
+  margin-top: 3rem;
+  margin-left: 6rem;
+}
+
+.personal-details {
+  background-color: #addfc1;
+  max-width: 55rem;
+  border-radius: 10px;
+}
+
+.personal-details__icon {
+  font-size: 3rem;
+}
+
+.personal-details__heading {
+  font-size: 1.8rem;
+  font-weight: bold;
+  display: block;
+  padding: 2rem 0 4rem 4rem;
+  color: #222;
+}
+
+.personal-details__content {
+  font-size: 1.4rem;
+  padding: 0 2rem;
+}
+
+.personl-details__field-group {
+  display: flex;
+  justify-content: space-between;
+  padding: .7rem 0 .6rem;
+}
+
+.personal-details__label {
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+
+.statistics {
+  background-color: #addfc1;
+  max-width: 55rem;
+  margin-top: 5rem;
+  min-height: 20rem;
+  margin-bottom: 30rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+.statistics__content {
+  font-size: 1.4rem;
+  padding: 0 2rem;
+}
+
+.statistics__field-group {
+  display: flex;
+  justify-content: space-between;
+  padding: .7rem 0 .6rem;
+}
+
+.statistics__heading {
+  font-size: 1.8rem;
+  font-weight: bold;
+  display: block;
+  padding: 2rem 0 4rem 4rem;
+  color: #222;
+}
+
+.statistics__label {
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+
+/* 1000px  1000/16 = 62.5 */
+@media only screen and (max-width: 62.5em) {
+  .header {
+    height: 24rem;
+    flex-direction: column;
+    position: relative;
+    background-color: #fff;
+  }
+
+  .logo-box {
+    display: flex;
+    background-color: #51BB7B;
+    margin-left: 0;
+    padding-left: 3rem;
+    padding-top: 2rem;
+  }
+
+  .header__nav {
+    background-color: #addfc1;
+  }
+
+  .header__options {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .header__logout {
+    position: absolute;
+    top: 2.3rem;
+    right: 1rem;
+  }
+
+  .header__options > a {
+    color: #fff;
+    display: block;
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .header__pricing {
+    margin-top: 3rem;
+    margin-bottom: .8rem;
+  }
+
+  .header__how-it-works {
+    margin-bottom: .8rem;
+  }
+
+  .header__profile {
+    margin-bottom: 2rem;
+  }
+}
+
+/* 849px  849/16 = 53.0625 */
+@media only screen and (max-width: 53.0625em) {
+  .create-order-btn {
+    display: none;
+  }
+
+  .btn-add-mobile {
+    height: 7.5rem;
+    width: 7.5rem;
+    background-color: #51BB7B;
+    border-radius: 50%;
+    display: inline-block;
+    position: fixed;
+    right: 10rem;
+    bottom: 5rem;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-add-mobile__icon {
+    display: initial;
+    position: fixed;
+    right: 12rem;
+    bottom: 6.8rem;
+    font-size: 3.8rem;
+    color: #fff;
+  }
+}
+
+/* 770px  700/16 = 48.2 */
+@media only screen and (max-width: 48.2em) {
+  .main-content {
+    flex-direction: column;
+  }
+
+  .profile-section {
+    padding: 0;
+  }
+
+  .details-section {
+
+    margin: 0 auto;
+    padding: 0 3rem;
+
+  }
+
+  .personal-details {
+    width: 50rem;
+  }
+
+  .statistics-details {
+    width: 50rem;
+  }
+
+  .hero__btn--profile {
+    margin-top: 6rem;
+    align-self: flex-start;
+  }
+}
+
+/* 680px */
+@media screen and (max-width: 42.5em) {
+  .btn-add-mobile {
+    right: 4rem;
+  }
+
+  .btn-add-mobile__icon {
+    right: 6rem;
+  }
+}
+
+/* 630px  630/16 = 39.4*/
+@media only screen and (max-width: 39.4em) {
+  .html {
+    font-size: 55%;
+  }
+
+  .details-section {
+    align-items: center;
+  }
+
+  .hero__btn--profile {
+    align-self: center;
+  }
+
+  .personal-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30rem;
+  }
+
+  .statistics {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30rem;
+    margin-top: 2rem;
+  }
+
+  .personal-details__heading {
+    padding-left: 0;
+    padding-bottom: 2rem;
+  }
+
+  .personl-details__field-group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .statistics__field-group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .statistics__heading {
+    padding: 2rem 0;
+  }
+
+  .footer {
+    flex-direction: column;
+    height: 22rem;
+  }
+
+  .footer > span {
+    padding-top: .7rem;
+  }
+
+}
+
+/* 500px  500/16 = 31.25 */
+@media only screen and (max-width: 31.25em) {
+  .btn-add-mobile {
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .btn-add-mobile__icon {
+    right: 3.1rem;
+    bottom: 3rem;
+  }
+}
+
+/* 350px  350/16 = 39.4*/
+@media only screen and (max-width: 21.875em) {
+  .personal-details {
+    width: 23rem;
+  }
+
+  .statistics {
+    width: 23rem;
+  }
+}
