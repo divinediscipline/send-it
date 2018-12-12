@@ -72,8 +72,8 @@ class OrderController {
 
 
   static createParcelDeliveryOrder(req, res) {
-    const sql = 'INSERT INTO parcels (userid, parceldescription, weight, weightmetric, pickuplocation, destination, receiversemail) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING parcel_id';
-    const params = [req.body.decoded.id, req.body.parceldescription, req.body.weight, req.body.weightmetric, req.body.pickuplocation, req.body.destination, req.body.receiversemail];
+    const sql = 'INSERT INTO parcels (userid, parceldescription, weightmetric, pickuplocation, destination, receiversphonenumber, receiversemail, pickuptime) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING parcel_id';
+    const params = [req.body.decoded.id, req.body.parceldescription, req.body.weightmetric, req.body.pickuplocation, req.body.destination, req.body.receiversphonenumber, req.body.receiversemail, req.body.pickuptime];
     return client.query(sql, params).then((parcel_id) => {
       const data = [{
         parcel_id: parcel_id.rows[0].parcel_id,

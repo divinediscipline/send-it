@@ -92,7 +92,7 @@ body {
 .main-section {
   max-width: 60rem;
   margin: 2rem auto 5rem auto;
-  background-color: #fff;
+  background-color: rgb(131, 211, 163);
 }
 
 label {
@@ -142,7 +142,7 @@ label {
   margin: 2rem  0 2rem 0;
   padding: 1.5rem 4rem;
   border-radius: 100px;
-  background-color: #51BB7B;
+  background-color: #205334;
   border: none;
   cursor: pointer;
   border-radius: 1rem;
