@@ -45,39 +45,38 @@
     </div>
 
     <main class="main-section">
-      <form class="new-order-form">
+      <form class="new-order-form" id="new-order-form">
         <h2 class="new-order-form__heading">New order</h2>
+        <div id="error-element" style="visibility:hidden;">error placeholder</div>
         <div class="new-order-form__form-group">
           <label for="pkage-desc">Package description</label>
-          <textarea name="" id="" class="new-order-form__input" cols="30" rows="10" placeholder="describe your parcel"></textarea>
+          <textarea name="parcelDescription" id="" class="new-order-form__input" cols="30" rows="10" placeholder="describe your parcel" required></textarea>
           <fieldset class="new-order-form__input fieldset">
             <legend class="legend">
               Pick up location
             </legend>
-            <input class="new-order-form__input" type="text" name="" placeholder="State">
-            <input class="new-order-form__input" type="text" name="" placeholder="Local government">
-            <input class="new-order-form__input" type="text" name="" placeholder="Address">
-            <input class="new-order-form__input" type="text" name="" placeholder="Nearest bustop/landmark">
+            <input class="new-order-form__input" type="text" name="pickUpState" placeholder="State" required>
+            <input class="new-order-form__input" type="text" name="pickUpLg" placeholder="Local government" required>
+            <input class="new-order-form__input" type="text" name="pickUpAddress" placeholder="Address" required>
           </fieldset>
           <fieldset class="new-order-form__input fieldset">
             <legend class="legend">
-              Delivery address
+              Destination
             </legend>
-            <input class="new-order-form__input" type="state" name="" placeholder="State">
-            <input class="new-order-form__input" type="state" name="" placeholder="Local government">
-            <input class="new-order-form__input" type="state" name="" placeholder="Address">
-            <input class="new-order-form__input" type="state" name="" placeholder="Nearest bustop/landmark">
-            <input class="new-order-form__input" type="number" name="" placeholder="Receivers phone number">
-            <input class="new-order-form__input" type="number" name="" placeholder="Receivers email">
+            <input class="new-order-form__input" type="text" name="destinationState" placeholder="State" required>
+            <input class="new-order-form__input" type="text" name="destinationLg" placeholder="Local government" required>
+            <input class="new-order-form__input" type="text" name="destinationAddress" placeholder="Address" required>
+            <input class="new-order-form__input" type="tel" name="destinationPhone" placeholder="Receivers phone number" required>
+            <input class="new-order-form__input" type="email" name="destinationEmail" placeholder="Receivers email" required>
           </fieldset>
           <label>
             <h4>Pick-up Time</h4>
           </label>
-          <input class="new-order-form__input" id='delivery-time' type="datetime-local" name='deliveryTime' placeholder="Delivery Time">
+          <input class="new-order-form__input" id='pickup-time' type="datetime-local" name='pickUpTime' placeholder="Pickup time" required>
           <label>
             <h4>Parcel Weight</h4>
           </label>
-          <select class="new-order-form__input" id='parcelDescription' name='parcelDescription'>
+          <select class="new-order-form__input" id='parcelWeight' name='parcelWeight'>
             <option selected="true" disabled>Parcel Weight</option>
             <option value="0kg - 5kg">0kg - 5kg (N200/km)</option>
             <option value="5kg - 20kg">5kg - 20kg (N400/km)</option>
@@ -86,7 +85,8 @@
             <option value="100kg above">100kg above (N1000/km)</option>
           </select>
         </div>
-        <a href="#" class="new-order-form__button">Create order</a>
+        
+        <button class="new-order-form__button" type="submit">Create order</button>
       </form>
     </main>
     <footer class="footer">
@@ -98,7 +98,7 @@
       <span class="footer__contact-us">Contact us</span>
 
     </footer>
-
+    <script src="./js/new-order.js"></script>
 </body>
 
 </html>

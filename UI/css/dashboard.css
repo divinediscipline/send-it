@@ -23,13 +23,16 @@
 }
 
 .header__profile-box {
+  display: flex;
+  align-items: center;
   font-size: 2rem;
   font-weight: bold;
   margin: 0 5rem 0 14rem;
   color: #205334;
-
-  position: relative;
-  display: inline-block;
+  position: relative; 
+}
+.header__profile {
+  margin-right: .5rem;
 }
 
 .dropbtn {
@@ -98,7 +101,11 @@
   display: block;
   margin: 10px auto 0;
 }
-
+.default-text {
+  color: #555;
+  font-size: 3rem;
+  padding: 7rem 0 80rem 3rem;
+}
 .order-cards {
   display: flex;
   flex-wrap: wrap;
@@ -176,7 +183,9 @@
   width: 100%;
   font-size: 1.6rem;
 }
-
+.pagination {
+  display: none;
+}
 
 .pagination__content {
   display: inline-block;
@@ -237,7 +246,7 @@
 /* 1000px  1000/16 = 62.5 */
 @media only screen and (max-width: 62.5em) {
   .header {
-    height: 24rem;
+    height: 20rem;
     flex-direction: column;
     position: relative;
     background-color: #fff;
@@ -281,10 +290,6 @@
 
   .header__how-it-works {
     margin-bottom: .8rem;
-  }
-
-  .header__profile {
-    margin-bottom: 2rem;
   }
 }
 

@@ -6,20 +6,22 @@ class parcelValidator {
   static validateParcelOrder(req, res, next) {
     const data = {
       parceldescription: req.body.parceldescription,
-      weight: req.body.weight,
       weightmetric: req.body.weightmetric,
       pickuplocation: req.body.pickuplocation,
       destination: req.body.destination,
       receiversemail: req.body.receiversemail,
+      receiversphonenumber: req.body.receiversphonenumber,
+      pickuptime: req.body.pickuptime,
     };
 
     const rules = {
-      parceldescription: 'required|min:3|string|max:100',
-      weight: 'required|numeric',
+      parceldescription: 'required|min:3|string',
       weightmetric: 'required|min:3|string|max:100',
-      pickuplocation: 'required|min:3|string|max:20',
-      destination: 'required|min:3|string|max:20',
+      pickuplocation: 'required|min:3|string',
+      destination: 'required|min:3|string',
       receiversemail: 'required|email',
+      receiversphonenumber: 'required|numeric',
+      pickuptime: 'required|min:3|string|max:100',
     };
 
     const validation = new Validator(data, rules);
@@ -40,6 +42,7 @@ class parcelValidator {
       phonenumber: req.body.phonenumber,
       email: req.body.email,
       password: req.body.password,
+      password_confirmation: req.body.password_confirmation,
     };
 
     const rules = {
@@ -47,7 +50,8 @@ class parcelValidator {
       lastname: 'required|min:3|string|alpha|max:20',
       phonenumber: 'required|numeric',
       email: 'required|email',
-      password: 'required|min:4|max:20',
+      password: 'required|min:4|max:20|confirmed',
+      password_confirmation: 'required',
     };
 
     const validation = new Validator(data, rules);

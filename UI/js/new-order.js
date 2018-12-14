@@ -19,39 +19,44 @@ const displayError2 = (bodyObject) => {
 };
 
 const submitData = async (form) => {
+  console.log('form', form);
   const data = JSON.stringify({
-    firstname: form.firstname.value,
-    lastname: form.lastname.value,
-    email: form.email.value,
-    phonenumber: form.phonenumber.value,
-    password: form.password.value,
-    password_confirmation: form.password_confirmation.value,
+    parceldescription: form.parcelDescription.value,
+    weightmetric: form.parcelWeight.value,
+    pickuplocation: `${form.pickUpState.value}, ${form.pickUpLg.value}, ${form.pickUpAddress.value}`,
+    destination: `${form.destinationState.value}, ${form.destinationLg.value}, ${form.destinationAddress.value}`,
+    receiversemail: form.destinationEmail.value,
+    receiversphonenumber: form.destinationPhone.value,
+    pickuptime: form.pickUpTime.value,
   });
-  const response = await fetch('/api/v1/auth/signup', {
+  console.log('data', data);
+  const token = localStorage.getItem('token');
+  console.log(token);
+  const response = await fetch('/api/v1/parcels', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'x-auth': token,
     },
     body: data,
   });
   const body = await response.json();
   console.log('body', body);
-  if (response.status === 409 || response.status === 500) {
-    displayError1(body);
-    return;
-  }
-  if (response.status !== 201) {
+  if (response.status === 400) {
     displayError2(body);
     return;
   }
-  console.log('userid', body.user.userid);
-  localStorage.setItem('token', body.token);
-  localStorage.setItem('userid', body.user.userid);
-  window.location.href = '../dashboard.html';
+  if (response.status !== 201) {
+    displayError1(body);
+    return;
+  }
+  if (response.status === 201) {
+    window.location.href = '../dashboard.html';
+  }
 };
 
-const signupFormElem = document.getElementById('signup-form');
-signupFormElem.addEventListener('submit', (e) => {
+const newOrderFormElem = document.getElementById('new-order-form');
+newOrderFormElem.addEventListener('submit', (e) => {
   e.preventDefault();
-  submitData(signupFormElem);
+  submitData(newOrderFormElem);
 });

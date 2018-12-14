@@ -1,21 +1,51 @@
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
 function myFunction() {
-  
-  document.getElementById("myDropdown").style.display="block";
+
+  document.getElementById('myDropdown').style.display = 'block';
 }
 
-// Close the dropdown menu if the user clicks outside of it
-// window.onclick = function(event) {
-// if (!event.target.matches('.dropbtn')) {
+const setParcelId = (event) => {
+  let parcelIdElem = event.target.parentElement.parentElement.getElementsByClassName('order-cards__parcelID-text')[0];
+  window.location.href = `./order-details.html?parcelid=${parcelIdElem.innerHTML}`;
+};
+const getAllUserOrders = async () => {
+  const token = localStorage.getItem('token');
+  const userid = localStorage.getItem('userid');
 
-//   var dropdowns = document.getElementsByClassName("dropdown-content");
-//   var i;
-//   for (i = 0; i < dropdowns.length; i++) {
-//     var openDropdown = dropdowns[i];
-//     if (openDropdown.classList.contains('show')) {
-//       openDropdown.classList.remove('show');
-//     }
-//   }
-// }
-// }
+  const response = await fetch(`/api/v1/users/${userid}/parcels`, {
+    method: 'GET',
+    headers: {
+      'x-auth': token,
+    },
+  });
+  const body = await response.json();
+  console.log('body', body);
+  if (response.status !== 200) return;
+  let output = '<p style="display:none;">Placeholder text</p>';
+  body.data.forEach((order) => {
+    output += `
+      <div class="order-cards__card">
+        <p class="order-cards__date">${order.senton}</p>
+        <div class="order-cards__field-group">
+          <h5 class="order-cards__destination-heading">Parcel ID</h5>
+          <p class="order-cards__parcelID-text">${order.parcel_id}</p>
+        </div>
+        <div class="order-cards__field-group">
+          <h5 class="order-cards__status-heading">Status</h5>
+          <p class="order-cards__status1">${order.status}</p>
+        </div>
+        <div class="order-cards__field-group">
+          <h5 class="order-cards__desc-heading">Parcel description</h5>
+          <p class="order-cards__desc">${order.parceldescription}</p>
+        </div>
+        <p class="order-cards__btn" onclick="setParcelId(event)"><button>View details</button></p>
+      </div>
+    `;
+  });
+  document.getElementById('cards-container').innerHTML = output;
+};
+
+getAllUserOrders();
+
+

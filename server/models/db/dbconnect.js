@@ -19,7 +19,6 @@ const parcelsTable = `CREATE TABLE IF NOT EXISTS parcels
 (
   parcel_id SERIAL PRIMARY KEY,
   parceldescription VARCHAR(255) NOT NULL,
-  weight float NOT NULL,
   weightmetric VARCHAR(255) NOT NULL,
   sentOn TIMESTAMPTZ DEFAULT now() NOT NULL,
   deliveredOn TIMESTAMPTZ DEFAULT now() NOT NULL,
@@ -27,7 +26,9 @@ const parcelsTable = `CREATE TABLE IF NOT EXISTS parcels
   status VARCHAR(20) DEFAULT 'Placed' NOT NULL,
   pickuplocation VARCHAR(255) NOT NULL,
   destination VARCHAR(255) NOT NULL,
+  receiversphonenumber VARCHAR(50) NOT NULL,
   receiversemail VARCHAR(100) NOT NULL,
+  pickuptime VARCHAR(255) NOT NULL,
   userid INTEGER NOT NULL,
   FOREIGN KEY (userid) REFERENCES users (userid) ON DELETE CASCADE
 );`;

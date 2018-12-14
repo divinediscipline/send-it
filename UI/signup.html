@@ -25,7 +25,8 @@
 
   <main class="main-section">
     <form id="signup-form" class="signup-form">
-      <h2 class="signup-form__heading">Create account</h2>
+      <h2 id="create-account" class="signup-form__heading">Create account</h2>
+      <div id="error-element" style="visibility:hidden;">error placeholder</div>
       <div class="signup-form__form-group">
         <label for="firstname">First Name</label>
         <input class="signup-form__input" type="text" id="firstname" name="firstname" required>
@@ -38,7 +39,7 @@
         <label for="psw">Password</label>
         <input class="signup-form__input" type="password" id="password" name="password" required>
         <label for="psw-confirm">Confirm password</label>
-        <input class="signup-form__input" type="password" id="password-confirm" name="passwordConfirm" required>
+        <input class="signup-form__input" type="password" id="password-confirm" name="password_confirmation" required>
       </div>
       <button class="signup-form__button" type="submit">sign up</button>
       <p class="signup-form__login-link-text">Already have an account? <a href="./login.html" class="signup-form__login-link">Log
