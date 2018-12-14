@@ -16,7 +16,7 @@ router.post('/auth/login', parcelValidator.validateLogin, userController.login);
 router.post('/auth/login/admin', parcelValidator.validateLogin, userController.loginAdmin);
 router.post('/parcels', userAuth.authenticate, parcelValidator.validateParcelOrder, orderController.createParcelDeliveryOrder);
 router.get('/parcels', userAuth.authenticate, userAuth.authenticateAdmin, orderController.getAllOrders);
-router.get('/parcels/:parcelId', userAuth.authenticate, userAuth.authenticateAdmin, orderController.getOneOrder);
+router.get('/parcels/:parcelId', userAuth.authenticate, orderController.getOneOrder);
 router.get('/users/:userId/parcels', userAuth.authenticate, checkUserId, orderController.getUserOrders);
 router.put('/parcels/:parcelId/cancel', userAuth.authenticate, checkParcelDetails, userAuth.verifyId, parcelValidator.validateCancel, orderController.cancelOrder);
 router.put('/parcels/:parcelId/destination', userAuth.authenticate, userAuth.verifyId, parcelValidator.validateDestination, orderController.changeParcelDestination);

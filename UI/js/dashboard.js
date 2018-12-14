@@ -5,6 +5,10 @@ function myFunction() {
   document.getElementById('myDropdown').style.display = 'block';
 }
 
+const setParcelId = (event) => {
+  let parcelIdElem = event.target.parentElement.parentElement.getElementsByClassName('order-cards__parcelID-text')[0];
+  window.location.href = `./order-details.html?parcelid=${parcelIdElem.innerHTML}`;
+};
 const getAllUserOrders = async () => {
   const token = localStorage.getItem('token');
   const userid = localStorage.getItem('userid');
@@ -25,7 +29,7 @@ const getAllUserOrders = async () => {
         <p class="order-cards__date">${order.senton}</p>
         <div class="order-cards__field-group">
           <h5 class="order-cards__destination-heading">Parcel ID</h5>
-          <p class="order-cards__destination-text">${order.parcel_id}</p>
+          <p class="order-cards__parcelID-text">${order.parcel_id}</p>
         </div>
         <div class="order-cards__field-group">
           <h5 class="order-cards__status-heading">Status</h5>
@@ -35,7 +39,7 @@ const getAllUserOrders = async () => {
           <h5 class="order-cards__desc-heading">Parcel description</h5>
           <p class="order-cards__desc">${order.parceldescription}</p>
         </div>
-        <p class="order-cards__btn"> <a href="./order-details.html"> <button>View details</button></a></p>
+        <p class="order-cards__btn" onclick="setParcelId(event)"><button>View details</button></p>
       </div>
     `;
   });
@@ -43,3 +47,5 @@ const getAllUserOrders = async () => {
 };
 
 getAllUserOrders();
+
+

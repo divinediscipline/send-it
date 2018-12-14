@@ -29,7 +29,7 @@ class OrderController {
         res.status(200).json(
           {
             message: 'Order retrieved successfully',
-            data: [result.rows[0]],
+            data: result.rows[0],
           },
         );
       } else {
@@ -54,7 +54,7 @@ class OrderController {
         res.status(200).json(
           {
             message: 'All your parcel delivery orders',
-            data: [result.rows[0]],
+            data: result.rows,
           },
         );
       } else {
