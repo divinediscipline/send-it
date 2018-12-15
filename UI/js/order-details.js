@@ -1,4 +1,14 @@
+const token = localStorage.getItem('token');
+const urlParams = new URLSearchParams(window.location.search);
+const parcelId = urlParams.get('parcelid');
+let cancelButton;
+
 const displayOrderDetails = (dataObject) => {
+  if (dataObject.status === 'Cancelled') {
+    cancelButton = '<a style="display:none;" id="cancel-btn" class="form-page__cancel-btn">Cancel order</a>';
+  } else {
+    cancelButton = '<a id="cancel-btn" class="form-page__cancel-btn">Cancel order</a>';
+  }
   const mainElem = document.getElementById('main-section');
   mainElem.insertAdjacentHTML('beforeend', `<div class="form-page">
   <h3 class="form-page__heading">Parcel details</h3>
@@ -15,6 +25,10 @@ const displayOrderDetails = (dataObject) => {
       <p class="parcel__field-group">
         <span class="parcel__label">Pick-up time</span>
         <span class="parcel__field">${dataObject.pickuptime}</span>
+      </p>
+      <p class="parcel__field-group">
+        <span class="parcel__label">Status</span>
+        <span id="status" class="parcel__field">${dataObject.status}</span>
       </p>
     </div>
 
@@ -43,16 +57,30 @@ const displayOrderDetails = (dataObject) => {
     </div>
     <div class="form-page__btns">
         <a href="./dashboard.html" class="form-page__view-btn ">View all orders</a>
-        <a href="#" class="form-page__cancel-btn">Cancel order</a>
+        ${cancelButton}
     </div>
     
 </div>`);
+
+  const cancelBtnElem = document.getElementById('cancel-btn');
+  cancelBtnElem.addEventListener('click', async () => {
+    const response = await fetch(`/api/v1/parcels/${parcelId}/cancel`, {
+      method: 'PUT',
+      headers: {
+        'x-auth': token,
+      },
+    });
+    const body = await response.json();
+    console.log('body', body);
+    if (response.status === 200) {
+      const statusElem = document.getElementById('status');
+      statusElem.innerHTML = body.data.status;
+      cancelBtnElem.style.display='none';
+    }
+  });
 };
 
 const getOrderDetails = async () => {
-  const token = localStorage.getItem('token');
-  const urlParams = new URLSearchParams(window.location.search);
-  const parcelId = urlParams.get('parcelid');
   const response = await fetch(`/api/v1/parcels/${parcelId}`, {
     method: 'GET',
     headers: {

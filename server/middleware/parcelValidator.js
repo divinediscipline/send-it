@@ -89,11 +89,6 @@ class parcelValidator {
 
   static validateCancel(req, res, next) {
     const { parcelId } = req.params;
-    if (req.body.status !== 'cancel') {
-      return res.status(400).json({
-        message: 'Invalid request. You can only input \'cancel\' ',
-      });
-    }
     const sql = 'SELECT status FROM parcels WHERE parcel_id = $1';
     const params = [parcelId];
     return client.query(sql, params).then((result) => {
@@ -105,7 +100,7 @@ class parcelValidator {
       if (result.rows[0].status === 'delivered') {
         return res.status(400).json({ message: 'Cannot cancel an already delivered order' });
       }
-      if (result.rows[0].status === 'cancel') {
+      if (result.rows[0].status === 'Cancelled') {
         return res.status(400).json({ message: 'order is already cancelled' });
       }
       return next();

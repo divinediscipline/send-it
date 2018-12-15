@@ -93,15 +93,15 @@ class OrderController {
 
   static cancelOrder(req, res) {
     const { parcelId } = req.params;
-    const { status } = req.body;
+    // const { status } = req.body;
     const sql = 'UPDATE parcels SET status = $1 WHERE parcel_id = $2 RETURNING parcel_id, status';
-    const params = [status, parcelId];
+    const params = ['Cancelled', parcelId];
     return client.query(sql, params).then((result) => {
-      const data = [{
+      const data = {
         parcel_id: result.rows[0].parcel_id,
         status: result.rows[0].status,
-        message: 'Order cancelled',
-      }];
+        message: 'Order cancelled successfully',
+      };
       return res.status(200).json({
         data,
       });
