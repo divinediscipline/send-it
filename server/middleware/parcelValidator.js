@@ -127,7 +127,7 @@ class parcelValidator {
       destination: req.body.destination,
     };
     const rules = {
-      destination: 'required|min:5|string|max:20',
+      destination: 'required|min:5|string|max:500',
     };
     const validation = new Validator(data, rules);
     if (validation.fails()) {
@@ -141,6 +141,7 @@ class parcelValidator {
     return client.query(sql, params).then((result) => {
       if (!result.rows[0]) return res.status(404).json({ message: 'Order not found' });
       if (result.rows[0].status === 'Delivered') return res.status(400).json({ message: 'You cannot change the destination of an already delivered order' });
+      if (result.rows[0].status === 'Cancelled') return res.status(400).json({ message: 'You cannot change the destination of a cancelled order' });
       return next();
     });
   }

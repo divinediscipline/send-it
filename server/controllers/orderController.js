@@ -75,10 +75,10 @@ class OrderController {
     const sql = 'INSERT INTO parcels (userid, parceldescription, weightmetric, pickuplocation, destination, receiversphonenumber, receiversemail, pickuptime) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING parcel_id';
     const params = [req.body.decoded.id, req.body.parceldescription, req.body.weightmetric, req.body.pickuplocation, req.body.destination, req.body.receiversphonenumber, req.body.receiversemail, req.body.pickuptime];
     return client.query(sql, params).then((parcel_id) => {
-      const data = [{
+      const data = {
         parcel_id: parcel_id.rows[0].parcel_id,
         message: 'order created',
-      }];
+      };
       res.status(201).json({
         data,
       });
@@ -119,11 +119,11 @@ class OrderController {
     const sql = 'UPDATE parcels SET destination = $1 WHERE parcel_id = $2 RETURNING parcel_id, destination';
     const params = [destination, parcelId];
     return client.query(sql, params).then((result) => {
-      const data = [{
+      const data = {
         parcel_id: result.rows[0].parcel_id,
         destination: result.rows[0].destination,
         message: 'Parcel destination updated',
-      }];
+      };
       res.status(200).json({
         data,
       });

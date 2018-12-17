@@ -151,6 +151,53 @@ body {
 .delivery-address__field-group > span {
   margin-bottom: 2rem;
 }
+.delivery-address__change-destination-btn {
+  background-color: #51BB7B;
+  padding: .5rem;
+  align-self: flex-end;
+  margin-bottom: .8rem;
+  color: #222;
+}
+.delivery-address__modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.delivery-address__modal-content {
+  background-color: #fefefe;
+  margin: 10% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+  height: 60%;
+  border-radius: 4px;
+}
+
+.delivery-address__close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.delivery-address__close-btn:hover,
+.delivery-address__close-btn:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.delivery-address__new-destination {
+  width: 80%;
+}
+.modal-form-group {
+  padding-top: 4rem;
+}
 .form-page__btns {
   /* background-color: orangered; */
   align-self: flex-start;
