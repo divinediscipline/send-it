@@ -97,7 +97,7 @@ const displayOrderDetails = (dataObject) => {
         ${cancelButton}
     </div>
     
-    <!-- The Modal -->
+    <!-- change destination modal -->
     <div id="myModal" class="delivery-address__modal">
     
       <!-- Modal content -->

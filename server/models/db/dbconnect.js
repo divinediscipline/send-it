@@ -1,6 +1,8 @@
 import { Client } from 'pg';
 import dotenv from 'dotenv';
 
+import userController from '../../controllers/userController';
+
 dotenv.config();
 
 const usersTable = `CREATE TABLE IF NOT EXISTS users
@@ -61,10 +63,14 @@ console.log('environment***', environment);
 const client = new Client(connectionString);
 client.connect()
   .then(() => {
-    return console.log('connected to database successfully');
+    console.log('connected to database successfully');
+    return client.query(usersTable);
   }).then(() => {
     console.log('users table created');
-    return client.query(`${usersTable} ${parcelsTable}`);
+    return client.query(parcelsTable);
+  }).then(() => {
+    console.log('parcels table created');
+    userController.signupAdmin();
   })
   .catch(() => {
     console.log('Unable to connect to database');

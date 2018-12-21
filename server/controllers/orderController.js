@@ -8,7 +8,7 @@ class OrderController {
       res.status(200).json(
         {
           message: 'All parcel delivery orders',
-          data: [result.rows[0]],
+          data: result.rows,
         },
       );
     }).catch((error) => {
@@ -72,12 +72,22 @@ class OrderController {
 
 
   static createParcelDeliveryOrder(req, res) {
-    const sql = 'INSERT INTO parcels (userid, parceldescription, weightmetric, pickuplocation, destination, receiversphonenumber, receiversemail, pickuptime) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING parcel_id';
+    const sql = 'INSERT INTO parcels (userid, parceldescription, weightmetric, pickuplocation, destination, receiversphonenumber, receiversemail, pickuptime) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *';
     const params = [req.body.decoded.id, req.body.parceldescription, req.body.weightmetric, req.body.pickuplocation, req.body.destination, req.body.receiversphonenumber, req.body.receiversemail, req.body.pickuptime];
-    return client.query(sql, params).then((parcel_id) => {
+    return client.query(sql, params).then((parcel) => {
       const data = {
-        parcel_id: parcel_id.rows[0].parcel_id,
-        message: 'order created',
+        message: 'order created successfully',
+        parcelId: parcel.rows[0].parcel_id,
+        userId: parcel.rows[0].userid,
+        parcelDescription: parcel.rows[0].parceldescription,
+        weightMetric: parcel.rows[0].weightmetric,
+        sentOn: parcel.rows[0].senton,
+        status: parcel.rows[0].status,
+        pickUpLocation: parcel.rows[0].pickuplocation,
+        destination: parcel.rows[0].destination,
+        receiversPhonenumber: parcel.rows[0].receiversphonenumber,
+        receiversEmail: parcel.rows[0].receiversemail,
+        pickUpTime: parcel.rows[0].pickuptime,
       };
       res.status(201).json({
         data,
@@ -141,11 +151,11 @@ class OrderController {
     const sql = 'UPDATE parcels SET status = $1 WHERE parcel_id = $2 RETURNING parcel_id, status';
     const params = [status, parcelId];
     return client.query(sql, params).then((result) => {
-      const data = [{
+      const data = {
         parcel_id: result.rows[0].parcel_id,
         status: result.rows[0].status,
         message: 'Parcel status updated',
-      }];
+      };
       res.status(200).json({
         data,
       });

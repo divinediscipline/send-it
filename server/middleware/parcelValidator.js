@@ -108,7 +108,7 @@ class parcelValidator {
   }
 
   static validateStatusChange(req, res, next) {
-    const correctEntries = ['Placed', 'Transiting', 'Delivered', 'Cancel'];
+    const correctEntries = ['Placed', 'Transiting', 'Delivered', 'Cancelled'];
     const { status } = req.body;
     const { parcelId } = req.params;
     const sql = 'SELECT status FROM parcels WHERE parcel_id = $1';
@@ -117,7 +117,7 @@ class parcelValidator {
       if (!result.rows[0]) return res.status(404).json({ message: 'Order not found' });
       if (result.rows[0].status === 'delivered') return res.status(400).json({ message: 'You cannot change the status of an already delivered order' });
       if (!status) return res.status(400).json({ message: 'invalid request, new status is not provided' });
-      if (!correctEntries.includes(status)) return res.status(400).json({ message: "Invalid status value. Value must be 'Placed', 'Delivered', 'Transiting' or 'Cancel'" });
+      if (!correctEntries.includes(status)) return res.status(400).json({ message: "Invalid status value. Value must be 'Placed', 'Delivered', 'Transiting' or 'Cancelled'" });
       return next();
     });
   }
