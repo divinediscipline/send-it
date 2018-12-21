@@ -25,6 +25,7 @@ const submitData = async (form) => {
     weightmetric: form.parcelWeight.value,
     pickuplocation: `${form.pickUpState.value}, ${form.pickUpLg.value}, ${form.pickUpAddress.value}`,
     destination: `${form.destinationState.value}, ${form.destinationLg.value}, ${form.destinationAddress.value}`,
+    presentlocation: `${form.pickUpState.value}, ${form.pickUpLg.value}`,
     receiversemail: form.destinationEmail.value,
     receiversphonenumber: form.destinationPhone.value,
     pickuptime: form.pickUpTime.value,

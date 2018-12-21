@@ -20,6 +20,6 @@ router.get('/users/:userId/parcels', userAuth.authenticate, checkUserId, orderCo
 router.put('/parcels/:parcelId/cancel', userAuth.authenticate, checkParcelDetails, userAuth.verifyId, parcelValidator.validateCancel, orderController.cancelOrder);
 router.put('/parcels/:parcelId/destination', userAuth.authenticate, userAuth.verifyId, parcelValidator.validateDestination, orderController.changeParcelDestination);
 router.put('/parcels/:parcelId/status', userAuth.authenticateAdmin, parcelValidator.validateStatusChange, orderController.changeOrderStatus);
-router.put('/parcels/:parcelId/presentLocation', userAuth.authenticate, userAuth.authenticateAdmin, orderController.changeLocation);
+router.put('/parcels/:parcelId/presentLocation', userAuth.authenticateAdmin, parcelValidator.validateLocation, orderController.changeLocation);
 
 export default router;

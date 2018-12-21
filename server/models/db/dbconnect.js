@@ -24,7 +24,7 @@ const parcelsTable = `CREATE TABLE IF NOT EXISTS parcels
   weightmetric VARCHAR(255) NOT NULL,
   sentOn TIMESTAMPTZ DEFAULT now() NOT NULL,
   deliveredOn TIMESTAMPTZ DEFAULT now() NOT NULL,
-  present_location VARCHAR(255) DEFAULT 'Not available' NOT NULL,
+  presentlocation VARCHAR(255) DEFAULT 'Not available' NOT NULL,
   status VARCHAR(20) DEFAULT 'Placed' NOT NULL,
   pickuplocation VARCHAR(255) NOT NULL,
   destination VARCHAR(255) NOT NULL,
