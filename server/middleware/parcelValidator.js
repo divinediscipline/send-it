@@ -12,6 +12,7 @@ class parcelValidator {
       receiversemail: req.body.receiversemail,
       receiversphonenumber: req.body.receiversphonenumber,
       pickuptime: req.body.pickuptime,
+      presentlocation: req.body.presentlocation,
     };
 
     const rules = {
@@ -22,6 +23,7 @@ class parcelValidator {
       receiversemail: 'required|email',
       receiversphonenumber: 'required|numeric',
       pickuptime: 'required|min:3|string|max:100',
+      presentlocation: 'required|min:3|string',
     };
 
     const validation = new Validator(data, rules);
@@ -148,15 +150,15 @@ class parcelValidator {
 
   static validateLocation(req, res, next) {
     const data = {
-      present_location: req.body.present_location,
+      presentlocation: req.body.presentlocation,
     };
     const rules = {
-      present_location: 'required|min:5|string|max:20',
+      presentlocation: 'required|min:2|string|max:20',
     };
     const validation = new Validator(data, rules);
     if (validation.fails()) {
       return res.status(400).json({
-        message: validation.errors.all().present_location[0],
+        message: validation.errors.all().presentlocation[0],
       });
     }
     const { parcelId } = req.params;
