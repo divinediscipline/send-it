@@ -1,4 +1,5 @@
 import client from '../models/db/dbconnect';
+import helpers from '../helpers/helpers';
 
 
 class OrderController {
@@ -72,10 +73,11 @@ class OrderController {
 
 
   static createParcelDeliveryOrder(req, res) {
+    let data;
     const sql = 'INSERT INTO parcels (userid, parceldescription, weightmetric, presentlocation, pickuplocation, destination, receiversphonenumber, receiversemail, pickuptime) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *';
     const params = [req.body.decoded.id, req.body.parceldescription, req.body.weightmetric, req.body.presentlocation, req.body.pickuplocation, req.body.destination, req.body.receiversphonenumber, req.body.receiversemail, req.body.pickuptime];
     return client.query(sql, params).then((parcel) => {
-      const data = {
+      data = {
         message: 'order created successfully',
         parcelId: parcel.rows[0].parcel_id,
         userId: parcel.rows[0].userid,
@@ -90,6 +92,13 @@ class OrderController {
         receiversEmail: parcel.rows[0].receiversemail,
         pickUpTime: parcel.rows[0].pickuptime,
       };
+      const newSql = 'SELECT * FROM users WHERE userid = $1';
+      const newParams = [parcel.rows[0].userid];
+      return client.query(newSql, newParams);
+    }).then((response) => {
+      const { firstname, email } = response.rows[0];
+      const { subject, html } = helpers.prepareNewOrderMail(data, firstname);
+      helpers.sendMail(subject, html, email);
       res.status(201).json({
         data,
       });
@@ -147,16 +156,25 @@ class OrderController {
   }
 
   static changeOrderStatus(req, res) {
+    let data;
     const { parcelId } = req.params;
     const { status } = req.body;
-    const sql = 'UPDATE parcels SET status = $1 WHERE parcel_id = $2 RETURNING parcel_id, status';
+    const sql = 'UPDATE parcels SET status = $1 WHERE parcel_id = $2 RETURNING *';
     const params = [status, parcelId];
     return client.query(sql, params).then((result) => {
-      const data = {
+      data = {
         parcel_id: result.rows[0].parcel_id,
         status: result.rows[0].status,
         message: 'Parcel status updated',
       };
+
+      const newSql = 'SELECT * FROM users WHERE userid = $1';
+      const newParams = [result.rows[0].userid];
+      return client.query(newSql, newParams);
+    }).then((response) => {
+      const { firstname, email } = response.rows[0];
+      const { subject, html } = helpers.prepareChangeStatusMail(data.status, data.parcel_id, firstname);
+      helpers.sendMail(subject, html, email);
       res.status(200).json({
         data,
       });
@@ -169,16 +187,25 @@ class OrderController {
   }
 
   static changeLocation(req, res) {
+    let data;
     const { parcelId } = req.params;
     const { presentlocation } = req.body;
-    const sql = 'UPDATE parcels SET presentlocation = $1 WHERE parcel_id = $2 RETURNING parcel_id, presentlocation';
+    const sql = 'UPDATE parcels SET presentlocation = $1 WHERE parcel_id = $2 RETURNING *';
     const params = [presentlocation, parcelId];
     return client.query(sql, params).then((result) => {
-      const data = {
+      data = {
         parcel_id: result.rows[0].parcel_id,
         presentLocation: result.rows[0].presentlocation,
         message: 'Parcel location updated',
       };
+
+      const newSql = 'SELECT * FROM users WHERE userid = $1';
+      const newParams = [result.rows[0].userid];
+      return client.query(newSql, newParams);
+    }).then((response) => {
+      const { firstname, email } = response.rows[0];
+      const { subject, html } = helpers.prepareChangeLocationMail(data.presentLocation, data.parcel_id, firstname);
+      helpers.sendMail(subject, html, email);
       res.status(200).json({
         data,
       });

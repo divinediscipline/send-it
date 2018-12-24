@@ -43,6 +43,7 @@ const submitData = async (form) => {
   });
   const body = await response.json();
   console.log('body', body);
+  console.log('status', response.status);
   if (response.status === 400) {
     displayError2(body);
     return;

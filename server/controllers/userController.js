@@ -8,6 +8,8 @@ dotenv.config();
 
 class UserController {
   static signup(req, res) {
+    let newUser;
+    let token;
     const sql = 'SELECT * FROM users WHERE email = $1';
     const params = [req.body.email];
     return client.query(sql, params).then((existingUser) => {
@@ -23,7 +25,7 @@ class UserController {
             const sql = 'INSERT INTO users (firstname, lastname, phonenumber, email, password) VALUES ($1, $2, $3, $4, $5) RETURNING *';
             const params = [req.body.firstname, req.body.lastname, req.body.phonenumber, user.email, user.password];
             return client.query(sql, params).then((existingUser) => {
-              const newUser = {
+              newUser = {
                 userid: existingUser.rows[0].userid,
                 firstname: existingUser.rows[0].firstname,
                 lastname: existingUser.rows[0].lastname,
@@ -32,7 +34,15 @@ class UserController {
                 registered: existingUser.rows[0].registered,
                 isadmin: existingUser.rows[0].isadmin,
               };
-              const token = helpers.generateAuthToken(existingUser.rows[0].userid, existingUser.rows[0].email, existingUser.rows[0].isadmin);
+              token = helpers.generateAuthToken(existingUser.rows[0].userid, existingUser.rows[0].email, existingUser.rows[0].isadmin);
+              
+              const newSql = 'SELECT * FROM users WHERE userid = $1';
+              const newParams = [newUser.userid];
+              return client.query(newSql, newParams);
+            }).then((response) => {
+              const { firstname, email } = response.rows[0];
+              const { subject, html } = helpers.prepareSignUpMail(firstname);
+              helpers.sendMail(subject, html, email);
               return res.status(201).header('x-auth', token).json({
                 message: 'signed up successfully',
                 token,
