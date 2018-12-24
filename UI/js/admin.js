@@ -2,6 +2,7 @@ let parcelId;
 let parcelStatusElem;
 let presentLocationElem;
 const token = localStorage.getItem('token');
+
 const submitNewDetails = async () => {
   const selectElem = document.getElementById('status-change');
   const selectedOption = selectElem.options[selectElem.selectedIndex].text;
