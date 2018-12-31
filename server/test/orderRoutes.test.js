@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import app from '../server';
 import { testUser, clearTablesIfExist, testOrder } from './testData';
 
-// clearTablesIfExist();
+clearTablesIfExist();
 let userToken;
 let userid;
 
@@ -13,6 +13,7 @@ before(async () => {
   const response = await request(app)
     .post('/api/v1/auth/signup')
     .send(testUser);
+  console.log('response', response.body);
   userToken = response.body.token;
   userid = response.body.user.userid;
 });

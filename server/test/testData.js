@@ -8,20 +8,20 @@ import app from '../server';
 const testUser = {
   firstname: 'Dino',
   lastname: 'Melaye',
-  username: 'dinomelaye',
   email: 'dino@gmail.com',
   password: '123456',
+  password_confirmation: '123456',
   phonenumber: 8076885868,
-  othernames: 'Joshua',
 };
 
 const testOrder = {
   parceldescription: '1 bag of rice',
-  weight: 34.7,
   weightmetric: '20 kg',
   pickuplocation: 'Abia state',
   destination: 'Lagos state',
+  receiversphonenumber: 97074774738,
   receiversemail: 'patience@gmail.com',
+  pickuptime: '2018-12-28T02:02',
 };
 
 const clearTables = () => {
