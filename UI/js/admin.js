@@ -61,17 +61,20 @@ const getAllOrders = async () => {
   console.log('body', body);
   if (response.status !== 200) return;
   const tableHeadingElem = document.getElementById('table-heading');
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   body.data.forEach((order) => {
+    const dateObject = new Date(order.senton);
+    const orderCreatedDate = `${months[dateObject.getMonth()]} ${dateObject.getDate()}, ${dateObject.getFullYear()}.`;
     tableHeadingElem.insertAdjacentHTML('afterend', `<tr>
     <td class="parcel-id">${order.parcel_id}</td>
     <td>${order.userid}</td>
-    <td>${order.senton}</td>
+    <td>${orderCreatedDate}</td>
     <td>${order.parceldescription}</td>
     <td>${order.pickuplocation}</td>
     <td>${order.destination}</td>
-    <td>${order.senton}</td>
+    <td>${order.pickuptime}</td>
     <td class="old-location">${order.presentlocation}</td>
-    <td class="old-status">${order.status}</td>
+    <td class="old-status ${order.status}">${order.status}</td>
     <td class="action-box"><button onclick="setParcelId(event)" id="change-status" class="change-status-btn" >Change status</button><button onclick="setPresentLocationId(event)" class="change-present-location-btn" >Change present location</button></td>
   </tr>
   
@@ -82,8 +85,8 @@ const getAllOrders = async () => {
       <span class=" change-status__close-btn">&times;</span>
       <form id="new-status-form" class="modal-form-group">
         <div id="error-element" style="visibility:hidden;">error placeholder</div>
-        <h2>Set new status</h2>
-        <select id="status-change" name="statusOptions">
+        <h2 class="change-status__modal-heading">Set new status</h2>
+        <select class="change-status__status-options" id="status-change" name="statusOptions">
           <option value="placed">Placed</option>
           <option value="transiting">Transiting</option>
           <option value="delivered">Delivered</option>
@@ -101,7 +104,7 @@ const getAllOrders = async () => {
       <span class=" change-present-location__close-btn">&times;</span>
       <form id="new-location-form" class="modal-form-group">
         <div id="error-element" style="visibility:hidden;">error placeholder</div>
-        <label for="p">Set new destination</label>
+        <label class="change-present-location__modal-heading" for="modal">Set new destination</label>
         <input id="change-present-location__input" class="change-present-location__input" type="text" name="location" placeholder="New location" required>
         <button id="submit-new-location" type="submit" class=" change-present-location__btn">Submit</button>
       </form> 

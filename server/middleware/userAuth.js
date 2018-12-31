@@ -55,8 +55,8 @@ class UserAuth {
   static verifyId(req, res, next) {
     const token = req.header('x-auth');
     const { parcelId } = req.params;
-    const decoded = jwt.verify(token, process.env.SECRET);
     try {
+      const decoded = jwt.verify(token, process.env.SECRET);
       const sql = 'SELECT userid FROM parcels WHERE parcel_id = $1';
       const params = [parcelId];
       return client.query(sql, params).then((result) => {
@@ -66,7 +66,7 @@ class UserAuth {
           return next();
         }
         return res.status(401).json({
-          message: 'Token is invald for the requested resource. Please sign up or log in',
+          message: 'Token is invalid for the requested resource. Please sign up or log in',
         });
       }).catch(() => {
         return res.status(400).json({
@@ -75,7 +75,7 @@ class UserAuth {
       });
     } catch (error) {
       return res.status(401).json({
-        message: 'Token is invald. Please sign up or log in',
+        message: 'Token is invalid. Please sign up or log in',
       });
     }
   }

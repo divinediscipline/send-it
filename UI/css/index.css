@@ -324,3 +324,10 @@
   }
 }
 
+/* 350px  350/16 = 21.87 */
+@media only screen and (max-width: 21.87em) { 
+  .features__btn-inline {
+    padding-bottom: 15px;
+  }
+}
+

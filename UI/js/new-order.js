@@ -1,3 +1,20 @@
+const myFunction = () => {
+  document.getElementById('myDropdown').classList.toggle('show');
+};
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = (event) => {
+  if (!event.target.matches('.profile-caret')) {
+    const dropdowns = document.getElementsByClassName('dropdown-content');
+    for (let i = 0; i < dropdowns.length; i++) {
+      const openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+};
+
 const displayError1 = (bodyObject) => {
   console.log('bodyObject', bodyObject.message);
   const errorElem = document.getElementById('error-element');
@@ -56,6 +73,9 @@ const submitData = async (form) => {
     window.location.href = '../dashboard.html';
   }
 };
+
+const firstName = localStorage.getItem('firstname');
+document.getElementById('firstname').textContent = firstName;
 
 const newOrderFormElem = document.getElementById('new-order-form');
 newOrderFormElem.addEventListener('submit', (e) => {

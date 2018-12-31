@@ -8,8 +8,8 @@
 .header__options > a {
   text-decoration: none;
   color: #fff;
-  margin-right: 3rem;
   font-size: 1.7rem;
+  margin-right: 3rem;
 }
 
 .header__options > a:hover {
@@ -142,11 +142,12 @@
   display: flex;
   justify-content: space-between;
   padding: .7rem 0 .6rem;
+  margin-bottom: 1.8rem;
 }
 
 .personal-details__label {
   font-weight: bold;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
 
 .statistics {
@@ -168,6 +169,7 @@
   display: flex;
   justify-content: space-between;
   padding: .7rem 0 .6rem;
+  margin-bottom: 1.8rem;
 }
 
 .statistics__heading {
@@ -180,7 +182,7 @@
 
 .statistics__label {
   font-weight: bold;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
 
 /* 1000px  1000/16 = 62.5 */
@@ -190,6 +192,7 @@
     flex-direction: column;
     position: relative;
     background-color: #fff;
+    margin-right: 0;
   }
 
   .logo-box {
@@ -283,7 +286,7 @@
   }
 
   .personal-details {
-    width: 50rem;
+    width: 60rem;
   }
 
   .statistics-details {
@@ -325,14 +328,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 30rem;
+    width: 40rem;
   }
 
   .statistics {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 30rem;
+    width: 40rem;
     margin-top: 2rem;
   }
 
@@ -357,7 +360,6 @@
 
   .footer {
     flex-direction: column;
-    height: 22rem;
   }
 
   .footer > span {
@@ -368,6 +370,13 @@
 
 /* 500px  500/16 = 31.25 */
 @media only screen and (max-width: 31.25em) {
+  .personal-details {
+    width: 30rem;
+  }
+
+  .statistics {
+    width: 30rem;
+  }
   .btn-add-mobile {
     right: 1rem;
     bottom: 1rem;
@@ -381,6 +390,17 @@
 
 /* 350px  350/16 = 39.4*/
 @media only screen and (max-width: 21.875em) {
+  .personal-details {
+    width: 28rem;
+  }
+
+  .statistics {
+    width: 28rem;
+  }
+}
+
+/* 310px  310/16 = 19.375*/
+@media only screen and (max-width: 19.375em) {
   .personal-details {
     width: 23rem;
   }

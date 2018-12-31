@@ -35,7 +35,7 @@ class UserController {
                 isadmin: existingUser.rows[0].isadmin,
               };
               token = helpers.generateAuthToken(existingUser.rows[0].userid, existingUser.rows[0].email, existingUser.rows[0].isadmin);
-              
+
               const newSql = 'SELECT * FROM users WHERE userid = $1';
               const newParams = [newUser.userid];
               return client.query(newSql, newParams);
@@ -180,6 +180,54 @@ class UserController {
         message: 'Error processing your request',
         error,
       });
+    });
+  }
+
+  static getUserProfile(req, res) {
+    let data;
+    let userDetails;
+    let parcelDetails;
+    const sql = 'SELECT * FROM users WHERE userid = $1';
+    const params = [req.params.userId];
+    return client.query(sql, params).then((user) => {
+      userDetails = user.rows[0];
+
+      const newSql = 'SELECT * FROM parcels WHERE userid = $1';
+      const newParams = [req.params.userId];
+      return client.query(newSql, newParams);
+    }).then((parcels) => {
+      if (parcels.rows[0]) {
+        parcelDetails = parcels.rows;
+        data = {
+          firstName: userDetails.firstname,
+          lastName: userDetails.lastname,
+          email: userDetails.email,
+          phoneNumber: userDetails.phonenumber,
+          noOfdeliveryOrdersPlaced: parcelDetails.filter(parcel => parcel.status === 'Placed').length,
+          noOfdeliveryOrdersTransiting: parcelDetails.filter(parcel => parcel.status === 'Transiting').length,
+          noOfdeliveryOrdersDelivered: parcelDetails.filter(parcel => parcel.status === 'Delivered').length,
+          noOfdeliveryOrdersCancelled: parcelDetails.filter(parcel => parcel.status === 'Cancelled').length,
+          allDeliveryOrders: parcelDetails.length,
+        };
+      } else {
+        data = {
+          firstName: userDetails.firstname,
+          lastName: userDetails.lastname,
+          email: userDetails.email,
+          phoneNumber: userDetails.phonenumber,
+          noOfdeliveryOrdersPlaced: 0,
+          noOfdeliveryOrdersTransiting: 0,
+          noOfdeliveryOrdersDelivered: 0,
+          noOfdeliveryOrdersCancelled: 0,
+          allDeliveryOrders: 0,
+        };
+      }
+      return res.status(200).json({
+        message: 'User profile retrieved successfully',
+        data,
+      });
+    }).catch((error) => {
+      console.log(error);
     });
   }
 }

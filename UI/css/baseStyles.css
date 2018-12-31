@@ -17,6 +17,8 @@ body {
   color: #f0f0f0;
 }
 .logo-box {
+  display: flex;
+  align-items: center;
   font-weight: bold;
   margin-left: 3rem;
 }

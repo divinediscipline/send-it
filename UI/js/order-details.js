@@ -1,3 +1,23 @@
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+
+const myFunction = () => {
+  document.getElementById('myDropdown').classList.toggle('show');
+};
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = (event) => {
+  if (!event.target.matches('.profile-caret')) {
+    const dropdowns = document.getElementsByClassName('dropdown-content');
+    for (let i = 0; i < dropdowns.length; i++) {
+      const openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+};
+
 const token = localStorage.getItem('token');
 const urlParams = new URLSearchParams(window.location.search);
 const parcelId = urlParams.get('parcelid');
@@ -37,7 +57,17 @@ const submitNewDetails = async (form) => {
   }
 };
 
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const displayOrderDetails = (dataObject) => {
+  const dateObject = new Date(dataObject.pickuptime);
+  let hours = dateObject.getHours();
+  let period = 'AM';
+  if (hours > 12) {
+    hours -= 12;
+    period = 'PM';
+  }
+  const time = `${hours}  ${period}`;
+  const displayedDate = `${months[dateObject.getMonth()]} ${dateObject.getDate()}, ${dateObject.getFullYear()}  \u00A0\u00A0${time}.`;
   if (dataObject.status === 'Cancelled') {
     cancelButton = '<a style="display:none;" id="cancel-btn" class="form-page__cancel-btn">Cancel order</a>';
     changeDestination = '<button style="display:none;" id="change-destination" class="delivery-address__change-destination-btn" >Change destination</button>';
@@ -55,16 +85,20 @@ const displayOrderDetails = (dataObject) => {
         <span class="parcel__field">${dataObject.parcel_id}</span>
       </p>
       <p class="parcel__field-group">
+        <span class="parcel__label">Parcel description</span>
+        <span class="parcel__field">${dataObject.parceldescription}</span>
+      </p>
+      <p class="parcel__field-group">
         <span class="parcel__label">Weight</span>
         <span class="parcel__field">${dataObject.weightmetric}</span>
       </p>
       <p class="parcel__field-group">
         <span class="parcel__label">Pick-up time</span>
-        <span class="parcel__field">${dataObject.pickuptime}</span>
+        <span class="parcel__field">${displayedDate}</span>
       </p>
       <p class="parcel__field-group">
         <span class="parcel__label">Status</span>
-        <span id="status" class="parcel__field">${dataObject.status}</span>
+        <span id="status" class=${dataObject.status}>${dataObject.status}</span>
       </p>
     </div>
 
@@ -105,7 +139,7 @@ const displayOrderDetails = (dataObject) => {
         <span class="delivery-address__close-btn">&times;</span>
         <form id="new-destination-form" class="modal-form-group">
           <div id="error-element" style="visibility:hidden;">error placeholder</div>
-          <label for="p">Enter your new destination details</label>
+          <label for="modal" class="modal-label">Enter your new destination details</label>
           <input class="delivery-address__new-destination" type="text" name="destination" placeholder="New destination" required>
           <button id="submit-destination" type="submit" class="delivery-address__change-destination-btn">Submit</button>
         </form>
@@ -165,4 +199,6 @@ const getOrderDetails = async () => {
     displayOrderDetails(body.data);
   }
 };
+const firstName = localStorage.getItem('firstname');
+document.getElementById('firstname').innerHTML = firstName;
 getOrderDetails();
