@@ -2,6 +2,12 @@ let parcelId;
 let parcelStatusElem;
 let presentLocationElem;
 const token = localStorage.getItem('token');
+const logout = document.getElementById('logout');
+
+logout.onclick = () => {
+  localStorage.clear();
+  window.location.href = '../index.html';
+};
 
 const submitNewDetails = async () => {
   const selectElem = document.getElementById('status-change');

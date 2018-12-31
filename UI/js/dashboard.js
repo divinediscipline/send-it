@@ -1,3 +1,10 @@
+const logout = document.getElementById('logout');
+
+logout.onclick = () => {
+  localStorage.clear();
+  window.location.href = '../index.html';
+};
+
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
 
