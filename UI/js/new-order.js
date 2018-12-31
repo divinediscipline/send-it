@@ -1,3 +1,10 @@
+const logout = document.getElementById('logout');
+
+logout.onclick = () => {
+  localStorage.clear();
+  window.location.href = '../index.html';
+};
+
 const myFunction = () => {
   document.getElementById('myDropdown').classList.toggle('show');
 };
