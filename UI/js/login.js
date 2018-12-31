@@ -45,6 +45,7 @@ const submitData = async (form) => {
   if (response.status === 200) {
     localStorage.setItem('token', body.token);
     localStorage.setItem('userid', body.user.userid);
+    localStorage.setItem('firstname', body.user.firstname);
     if (body.user.isadmin) {
       window.location.href = '../admin.html';
       return;

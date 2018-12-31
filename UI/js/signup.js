@@ -47,6 +47,7 @@ const submitData = async (form) => {
   console.log('userid', body.user.userid);
   localStorage.setItem('token', body.token);
   localStorage.setItem('userid', body.user.userid);
+  localStorage.setItem('firstname', body.user.firstname);
   window.location.href = '../dashboard.html';
 };
 

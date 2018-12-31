@@ -132,12 +132,24 @@ table th {
   background-color: rgb(123, 196, 152);
   color: white;
 }
+
+.Transiting {
+  color: rgb(179, 179, 37);
+}
+.Delivered {
+  color: #51BB7B;
+}
+.Cancelled {
+  color: red;
+}
 .change-status__change-status-btn {
   background-color: #51BB7B;
   padding: .5rem;
   align-self: flex-end;
   margin-bottom: .8rem;
   color: #222;
+  display: block;
+  margin-left: 4rem;
 }
 .change-status__modal {
   display: none;
@@ -181,10 +193,20 @@ table th {
 }
 .action-box {
   display: flex;
+  margin: 9rem 0;
 }
 .change-status-btn {
   background-color: #51BB7B;
   padding: 0rem 2rem;
+}
+.change-status__modal-heading {
+  color: #222;
+  margin-left: 4rem;
+}
+.change-status__status-options {
+  margin: 1rem 0 1rem 4rem;
+  padding: .5rem;
+  width: 60%;
 }
 .change-present-location-btn {
   background-color: #51BB7B;
@@ -196,6 +218,8 @@ table th {
   align-self: flex-end;
   margin-bottom: .8rem;
   color: #222;
+  display: block;
+  margin-top: 1rem;
 }
 .change-present-location__modal {
   display: none;
@@ -207,7 +231,10 @@ table th {
   height: 100%;
   background-color: rgba(0,0,0,0.4);
 }
-
+.change-present-location__modal-heading {
+  color: #222;
+  font-size: 2rem;
+}
 .change-present-location__modal-content {
   background-color: #fefefe;
   margin: 10% auto; 
@@ -232,7 +259,9 @@ table th {
   cursor: pointer;
 }
 .change-present-location__input {
-  width: 80%;
+  width: 95%;
+  padding: 1rem;
+  font-size: 2rem;
 }
 .modal-form-group {
   padding-top: 4rem;
@@ -242,4 +271,86 @@ table th {
   left: 0;
   bottom: 0;
   width: 100%;
+}
+
+/* 1000px  1000/16 = 62.5 */
+@media only screen and (max-width: 62.5em) {
+  .header {
+    height: 20rem;
+    flex-direction: column;
+    position: relative;
+    background-color: #fff;
+  }
+
+  .logo-box {
+    display: flex;
+    background-color: #51BB7B;
+    margin-left: 0;
+    padding-left: 3rem;
+    padding-top: 2rem;
+  }
+
+  .header__nav {
+    background-color: #addfc1;
+  }
+
+  .header__options {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .header__logout {
+    position: absolute;
+    top: 2.3rem;
+    right: 1rem;
+  }
+  .header__profile-box {
+    position: absolute;
+    bottom: 14rem;
+    right: .3rem;
+  }
+  .header__options > a {
+    color: #fff;
+    display: block;
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .header__pricing {
+    margin-top: 3rem;
+    margin-bottom: .8rem;
+  }
+
+  .header__how-it-works {
+    margin-bottom: .8rem;
+  }
+}
+
+/* 680px  680/16 = 42.5 */
+@media only screen and (max-width: 42.5em) {
+  .change-status__modal-content {
+    width: 75%;
+  }
+  .change-present-location__modal-content {
+    width: 75%;
+  }
+}
+/* 500px  500/16 = 31.25 */
+@media only screen and (max-width: 31.25em) {
+  html {
+    font-size: 50%;
+  }
+  .logo-box__logo {
+    font-size: 2.8rem;
+  }
+
+  .logo-box__text {
+    font-size: 3rem;
+  }
+
+  .header__logout {
+    font-size: 1.4rem;
+    padding: .2rem 1.5rem;
+  }
 }

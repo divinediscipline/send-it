@@ -5,10 +5,15 @@ body {
   min-height: 100vh;
 }
 
+.logo-box {
+  display: block;
+}
+
 .main-section {
-  max-width: 60rem;
+  max-width: 55rem;
   margin: 2rem auto 5rem auto;
   background-color: #fff;
+  border-radius: 2rem;
 }
 
 label {
@@ -21,7 +26,7 @@ label {
 }
 
 .signup-form {
-  margin: 2rem 5rem;
+  margin: 2rem 3rem;
   padding-top: 4rem;
 }
 
@@ -38,23 +43,21 @@ label {
   margin: 4px 0;
   box-sizing: border-box;
   font-size: 1.6rem;
-  border: 1px solid #eee;
+  border: 1px solid #51BB7B;
 }
 
 .signup-form__input:focus {
   outline: none;
-  border: 1px solid #51BB7B;
+  border: 1.5px solid #205334;
 }
 
 .signup-form__button {
   display: inline-block;
   margin: 2rem 0 .8rem;
   padding: 1.5rem 7rem;
-  border-radius: 100px;
   background-color: #51BB7B;
   border: none;
   cursor: pointer;
-  border-radius: 1rem;
   font-size: 1.6rem;
   text-transform: uppercase;
   color: #fff;
@@ -91,10 +94,15 @@ label {
 /* 640px  640/16 = 40 */
 @media only screen and (max-width: 40em) {
   .main-section {
-    margin-left: 3rem;
-    margin-right: 3rem;
+    margin-left: .8rem;
+    margin-right: .8rem;
+  }
+
+  .signup-form {
+    margin: 2rem 2rem;
   }
 }
+
 
 /* 370px  370/16 = 23.2 */
 @media only screen and (max-width: 23.2em) {
