@@ -5,10 +5,19 @@ import request from 'supertest';
 import client from '../models/db/dbconnect';
 import app from '../server';
 
-const testUser = {
+const testUser1 = {
   firstname: 'Dino',
   lastname: 'Melaye',
   email: 'dino@gmail.com',
+  password: '123456',
+  password_confirmation: '123456',
+  phonenumber: 8076885868,
+};
+
+const testUser2 = {
+  firstname: 'Goodluck',
+  lastname: 'Jonathan',
+  email: 'joe@gmail.com',
   password: '123456',
   password_confirmation: '123456',
   phonenumber: 8076885868,
@@ -82,5 +91,5 @@ const addAdmin = () => {
 };
 
 export {
-  testOrder, testUser, clearTables, clearTablesIfExist,
+  testOrder, testUser1, testUser2, clearTables, clearTablesIfExist,
 };

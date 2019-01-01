@@ -3,15 +3,29 @@ import { expect } from 'chai';
 
 
 import app from '../server';
-import { testUser, clearTables } from './testData';
+// import { testUser, clearTables } from './testData';
+import { testUser1, testUser2, clearTablesIfExist } from './testData';
+// clearTables();
 
-clearTables();
+clearTablesIfExist();
+let userToken;
+let userid;
 
-describe('POST /auth/signup  Sign up a user', () => {
+// sign up a user before tests
+before(async () => {
+  const response = await request(app)
+    .post('/api/v1/auth/signup')
+    .send(testUser1);
+  console.log('response', response.body);
+  userToken = response.body.token;
+  userid = response.body.user.userid;
+});
+
+describe('POST /auth/signup - Sign up a user', () => {
   it('should sign up a new user and return authentication token', (done) => {
     request(app)
       .post('/api/v1/auth/signup')
-      .send(testUser)
+      .send(testUser2)
       .expect(201)
       .expect((res) => {
         expect(res.headers['x-auth']).to.exist;
@@ -39,7 +53,7 @@ describe('POST /auth/signup  Sign up a user', () => {
   it('should not signup user if email is already in use', (done) => {
     request(app)
       .post('/api/v1/auth/signup')
-      .send(testUser)
+      .send(testUser2)
       .expect(409)
       .end(done);
   });

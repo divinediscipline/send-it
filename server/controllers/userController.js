@@ -128,6 +128,7 @@ class UserController {
             const sql = 'INSERT INTO users (firstname, lastname, phonenumber, email, password, isadmin) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *';
             const params = [user.firstName, user.lastName, user.phoneNumber, user.email, user.password, user.isAdmin];
             return client.query(sql, params).then(() => {
+              console.log('admin seeded', user.firstName);
             }).catch((error) => {
               console.log(error);
             });

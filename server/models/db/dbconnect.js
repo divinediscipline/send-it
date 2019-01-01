@@ -71,6 +71,7 @@ client.connect()
   }).then(() => {
     console.log('parcels table created');
     userController.signupAdmin();
+    console.log('got here too');
   })
   .catch(() => {
     console.log('Unable to connect to database');
