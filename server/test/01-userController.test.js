@@ -8,8 +8,8 @@ import { testUser2, clearTablesIfExist } from './testData';
 // clearTables();
 
 clearTablesIfExist();
-let userToken;
-let userid;
+// let userToken;
+// let userid;
 
 // sign up a user before tests
 // before(async () => {

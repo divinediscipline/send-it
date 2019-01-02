@@ -109,34 +109,34 @@ class UserController {
   }
 
 
-  static signupAdmin() {
-    const user = {
-      firstName: process.env.firstName,
-      lastName: process.env.lastName,
-      phoneNumber: process.env.phoneNumber,
-      email: process.env.email,
-      password: process.env.password,
-      isAdmin: process.env.isAdmin,
-    };
-    const sql = 'SELECT * FROM users WHERE email = $1';
-    const params = [user.email];
-    client.query(sql, params).then((existingUser) => {
-      if (!existingUser.rows[0]) {
-        bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(user.password, salt, (err, hashedPassword) => {
-            user.password = hashedPassword;
-            const sql = 'INSERT INTO users (firstname, lastname, phonenumber, email, password, isadmin) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *';
-            const params = [user.firstName, user.lastName, user.phoneNumber, user.email, user.password, user.isAdmin];
-            return client.query(sql, params).then(() => {
-              console.log('admin seeded', user.firstName);
-            }).catch((error) => {
-              console.log(error);
-            });
-          });
-        });
-      }
-    });
-  }
+  // static signupAdmin() {
+  //   const user = {
+  //     firstName: process.env.firstName,
+  //     lastName: process.env.lastName,
+  //     phoneNumber: process.env.phoneNumber,
+  //     email: process.env.email,
+  //     password: process.env.password,
+  //     isAdmin: process.env.isAdmin,
+  //   };
+  //   const sql = 'SELECT * FROM users WHERE email = $1';
+  //   const params = [user.email];
+  //   client.query(sql, params).then((existingUser) => {
+  //     if (!existingUser.rows[0]) {
+  //       bcrypt.genSalt(10, (err, salt) => {
+  //         bcrypt.hash(user.password, salt, (err, hashedPassword) => {
+  //           user.password = hashedPassword;
+  //           const sql = 'INSERT INTO users (firstname, lastname, phonenumber, email, password, isadmin) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *';
+  //           const params = [user.firstName, user.lastName, user.phoneNumber, user.email, user.password, user.isAdmin];
+  //           return client.query(sql, params).then(() => {
+  //             console.log('admin seeded', user.firstName);
+  //           }).catch((error) => {
+  //             console.log(error);
+  //           });
+  //         });
+  //       });
+  //     }
+  //   });
+  // }
 
   static loginAdmin(req, res) {
     const sql = 'SELECT * FROM users WHERE email = $1';
