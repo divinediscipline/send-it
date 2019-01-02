@@ -63,20 +63,19 @@ const client = new Client(connectionString);
 client.connect()
   .then(() => {
     console.log('connected to database successfully');
-    return client.query(usersTable);
+    client.query(usersTable);
   }).then(() => {
     console.log('users table created');
-    return client.query(parcelsTable);
+    client.query(parcelsTable);
   }).then(() => {
     console.log('parcels table created');
-    signupAdmin();
+    return signupAdmin();
   })
-  // .then(() => {
-  //   process.exit(0);
-  // })
+  .then(() => {
+    process.exit(0);
+  })
   .catch(() => {
     console.log('Unable to connect to database');
-    // process.exit(1);
   });
 
 function signupAdmin() {
