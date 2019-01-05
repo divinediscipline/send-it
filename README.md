@@ -82,5 +82,5 @@ SendIT is a courier service that helps users deliver parcels to different destin
 * Clone the repository
 * run "npm install" to install all the application dependencies. You must have NPM - Node package manager installed to do this.
 * run "npm start" to start up the server at localhost 5000 
-* navigate to localhost:5000/api/v1 to make http requests to the specified endpoints
+* navigate to localhost:5000/api/v1 to make the required http requests to the specified endpoints
 
