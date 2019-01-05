@@ -36,13 +36,10 @@ beforeEach(async () => {
     });
   adminToken = result1.body.token;
   useridForAdmin = result1.body.user.userid;
-  // console.log('*****adminToken****', adminToken);
-  // console.log('*****useridforadmin****', useridForAdmin);
 
   const response = await request(app)
     .post('/api/v1/auth/signup')
     .send(testUser1);
-  // console.log('response', response.body);
   userToken = response.body.token;
   userid = response.body.user.userid;
 
@@ -263,7 +260,6 @@ describe('POST /parcels - Create parcel delivery order', () => {
       .send(testOrder)
       .expect(201)
       .expect((res) => {
-        console.log('*******response body*********', res.body);
         expect(res.body).to.include.all.keys('data');
       })
       .end(done);
