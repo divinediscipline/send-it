@@ -1,6 +1,4 @@
 import bcrypt from 'bcryptjs';
-import request from 'supertest';
-// import { expect } from 'chai';
 
 import client from '../models/db/dbconnect';
 import app from '../server';
@@ -31,6 +29,11 @@ const testOrder = {
   receiversphonenumber: 97074774738,
   receiversemail: 'patience@gmail.com',
   pickuptime: '2018-12-28T02:02',
+  presentlocation: 'Amuwo odofin',
+};
+
+const newTestDestination = {
+  destination: '5 Ajanlekoko street, Ajah, Kaduna state',
 };
 
 const clearTables = () => {
@@ -91,5 +94,5 @@ const addAdmin = () => {
 };
 
 export {
-  testOrder, testUser1, testUser2, clearTables, clearTablesIfExist,
+  testOrder, testUser1, testUser2, clearTables, clearTablesIfExist, newTestDestination,
 };

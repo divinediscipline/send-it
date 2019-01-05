@@ -161,6 +161,11 @@ class OrderController {
     const sql = 'UPDATE parcels SET status = $1 WHERE parcel_id = $2 RETURNING *';
     const params = [status, parcelId];
     return client.query(sql, params).then((result) => {
+      if (!result.rows[0]) {
+        return res.status(404).json({
+          message: 'order does not exist',
+        });
+      }
       data = {
         parcel_id: result.rows[0].parcel_id,
         status: result.rows[0].status,

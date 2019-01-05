@@ -69,7 +69,7 @@ class UserAuth {
           message: 'Token is invalid for the requested resource. Please sign up or log in',
         });
       }).catch(() => {
-        return res.status(400).json({
+        return res.status(404).json({
           message: 'order does not exist',
         });
       });

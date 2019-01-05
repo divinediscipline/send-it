@@ -63,16 +63,13 @@ const client = new Client(connectionString);
 client.connect()
   .then(() => {
     console.log('connected to database successfully');
-    client.query(usersTable);
+    return client.query(usersTable);
   }).then(() => {
     console.log('users table created');
-    client.query(parcelsTable);
+    return client.query(parcelsTable);
   }).then(() => {
     console.log('parcels table created');
-    return signupAdmin();
-  })
-  .then(() => {
-    process.exit(0);
+    signupAdmin();
   })
   .catch(() => {
     console.log('Unable to connect to database');
@@ -98,11 +95,14 @@ function signupAdmin() {
           const params = [user.firstName, user.lastName, user.phoneNumber, user.email, user.password, user.isAdmin];
           return client.query(sql, params).then(() => {
             console.log('admin seeded', user.firstName);
+            process.exit(0);
           }).catch((error) => {
             console.log(error);
           });
         });
       });
+    } else {
+      process.exit(0);
     }
   });
 }

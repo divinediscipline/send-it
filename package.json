@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/server.js",
-    "test": "cross-env NODE_ENV=test node db.js && cross-env NODE_ENV=test nyc mocha server/**/*.test.js --require babel-register --exit",
+    "test": "cross-env NODE_ENV=test node db.js && cross-env NODE_ENV=test nyc mocha server/**/*.test.js --timeout 10000 --require babel-register --exit",
     "heroku-postbuild": "babel server -d dist",
     "build": "babel server -d dist",
-    "start:dev": "node server/helpers/www",
+    "start:dev": "node db.js && node server/helpers/www",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "engines": {
