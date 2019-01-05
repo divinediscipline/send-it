@@ -60,8 +60,6 @@ class UserAuth {
       const sql = 'SELECT userid FROM parcels WHERE parcel_id = $1';
       const params = [parcelId];
       return client.query(sql, params).then((result) => {
-        console.log('1****', result.rows[0]);
-        console.log('2****', decoded.id);
         if (result.rows[0].userid == decoded.id) {
           return next();
         }
@@ -69,7 +67,7 @@ class UserAuth {
           message: 'Token is invalid for the requested resource. Please sign up or log in',
         });
       }).catch(() => {
-        return res.status(400).json({
+        return res.status(404).json({
           message: 'order does not exist',
         });
       });

@@ -1,27 +1,39 @@
 import bcrypt from 'bcryptjs';
-import request from 'supertest';
-// import { expect } from 'chai';
 
 import client from '../models/db/dbconnect';
 import app from '../server';
 
-const testUser = {
+const testUser1 = {
   firstname: 'Dino',
   lastname: 'Melaye',
-  username: 'dinomelaye',
   email: 'dino@gmail.com',
   password: '123456',
+  password_confirmation: '123456',
   phonenumber: 8076885868,
-  othernames: 'Joshua',
+};
+
+const testUser2 = {
+  firstname: 'Goodluck',
+  lastname: 'Jonathan',
+  email: 'joe@gmail.com',
+  password: '123456',
+  password_confirmation: '123456',
+  phonenumber: 8076885868,
 };
 
 const testOrder = {
   parceldescription: '1 bag of rice',
-  weight: 34.7,
   weightmetric: '20 kg',
   pickuplocation: 'Abia state',
   destination: 'Lagos state',
+  receiversphonenumber: 97074774738,
   receiversemail: 'patience@gmail.com',
+  pickuptime: '2018-12-28T02:02',
+  presentlocation: 'Amuwo odofin',
+};
+
+const newTestDestination = {
+  destination: '5 Ajanlekoko street, Ajah, Kaduna state',
 };
 
 const clearTables = () => {
@@ -82,5 +94,5 @@ const addAdmin = () => {
 };
 
 export {
-  testOrder, testUser, clearTables, clearTablesIfExist,
+  testOrder, testUser1, testUser2, clearTables, clearTablesIfExist, newTestDestination,
 };

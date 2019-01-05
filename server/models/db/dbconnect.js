@@ -1,39 +1,7 @@
 import { Client } from 'pg';
 import dotenv from 'dotenv';
 
-import userController from '../../controllers/userController';
-
 dotenv.config();
-
-const usersTable = `CREATE TABLE IF NOT EXISTS users
-(
-  userid SERIAL PRIMARY KEY,
-  firstname VARCHAR(255) NOT NULL,
-  lastname VARCHAR(255) NOT NULL,
-  phonenumber VARCHAR(50) NOT NULL,
-  email VARCHAR(100) UNIQUE NOT NULL,
-  password VARCHAR(255) NOT NULL,
-  registered TIMESTAMPTZ DEFAULT now() NOT NULL,
-  isadmin boolean DEFAULT false
-);`;
-
-const parcelsTable = `CREATE TABLE IF NOT EXISTS parcels
-(
-  parcel_id SERIAL PRIMARY KEY,
-  parceldescription VARCHAR(255) NOT NULL,
-  weightmetric VARCHAR(255) NOT NULL,
-  sentOn TIMESTAMPTZ DEFAULT now() NOT NULL,
-  deliveredOn TIMESTAMPTZ DEFAULT now() NOT NULL,
-  presentlocation VARCHAR(255) DEFAULT 'Not available' NOT NULL,
-  status VARCHAR(20) DEFAULT 'Placed' NOT NULL,
-  pickuplocation VARCHAR(255) NOT NULL,
-  destination VARCHAR(255) NOT NULL,
-  receiversphonenumber VARCHAR(50) NOT NULL,
-  receiversemail VARCHAR(100) NOT NULL,
-  pickuptime VARCHAR(255) NOT NULL,
-  userid INTEGER NOT NULL,
-  FOREIGN KEY (userid) REFERENCES users (userid) ON DELETE CASCADE
-);`;
 
 const dbconnection = {
   user: process.env.PG_USER,
@@ -64,13 +32,6 @@ const client = new Client(connectionString);
 client.connect()
   .then(() => {
     console.log('connected to database successfully');
-    return client.query(usersTable);
-  }).then(() => {
-    console.log('users table created');
-    return client.query(parcelsTable);
-  }).then(() => {
-    console.log('parcels table created');
-    userController.signupAdmin();
   })
   .catch(() => {
     console.log('Unable to connect to database');

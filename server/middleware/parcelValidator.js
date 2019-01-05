@@ -99,7 +99,7 @@ class parcelValidator {
           message: 'Order not found',
         });
       }
-      if (result.rows[0].status === 'delivered') {
+      if (result.rows[0].status === 'Delivered') {
         return res.status(400).json({ message: 'Cannot cancel an already delivered order' });
       }
       if (result.rows[0].status === 'Cancelled') {
