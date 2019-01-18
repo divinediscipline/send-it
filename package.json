@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "node db.js && node dist/server.js",
     "test": "cross-env NODE_ENV=test node db.js && cross-env NODE_ENV=test nyc mocha server/**/*.test.js --timeout 10000 --require babel-register --exit",
     "heroku-postbuild": "babel server -d dist",
     "build": "babel server -d dist",
