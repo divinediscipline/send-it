@@ -1,10 +1,12 @@
 import express from 'express';
 import logger from 'morgan';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 
 import parcelDeliveryOrders from './routes/parcelDeliveryOrders';
 
 const app = express();
+app.use(cors());
 
 // Log requests to the console.
 app.use(logger('dev'));
